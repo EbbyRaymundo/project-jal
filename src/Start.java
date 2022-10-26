@@ -1,4 +1,4 @@
-//Inherits all other classes , will be main class
+// Executes all other classes, will be the main class to instantiate all objects
 public class Start {
 
 	public static void main(String[] args) {
