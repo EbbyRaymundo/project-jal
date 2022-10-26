@@ -1,3 +1,7 @@
+/**
+ * Class to manage and the player
+ */
+
 public class Player {
 
     private int karma;
@@ -6,6 +10,9 @@ public class Player {
 
     private Inventory inventory;
 
+    /**
+     * Constructor
+     */
     public Player()
     {
         this.karma = -1;
@@ -13,18 +20,51 @@ public class Player {
         this.inventory = new Inventory();
     }
 
+    /**
+     * @return player karma
+     */
     public static int getKarma()
     {
         return -1;
     }
 
+    /**
+     * @return player name
+     */
     public static String getName()
     {
         return null;
     }
 
+    /**
+     * @return player Inventory
+     */
     public static Inventory getInventory()
     {
         return null;
+    }
+
+    /**
+     * @param null
+     */
+    public void setKarma()
+    {
+
+    }
+
+    /**
+     * @param null
+     */
+    public void setName()
+    {
+        
+    }
+
+    /**
+     * @param null
+     */
+    public void setInventory()
+    {
+        
     } 
 }

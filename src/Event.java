@@ -11,6 +11,7 @@ public class Event {
         this.decisions = new ArrayList<Decision>();
         this.prompt = "";
     }
+
     public static ArrayList<Decision> getDecisions()
     {
         return null;
@@ -21,4 +22,19 @@ public class Event {
         return null;
     }
     
+    /**
+     * @param null
+     */
+    public void setDecisions()
+    {
+    
+    }
+    
+    /**
+     * @param null
+     */
+    public void setPrompt()
+    {
+    
+    }
 }
