@@ -1,3 +1,4 @@
+
 /**
  * Class to manage and the player
  */
@@ -13,58 +14,83 @@ public class Player {
     /**
      * Constructor
      */
-    public Player()
+    public Player(String name)
     {
-        this.karma = -1;
-        this.name = "";
+        this.karma = 0;
+        this.name = name;
         this.inventory = new Inventory();
+    }
+
+    public Player(String name, Inventory inventory) {
+
+        this.karma = 0;
+        this.name = name;
+        this.inventory = inventory;
+        
     }
 
     /**
      * @return player karma
      */
-    public static int getKarma()
+    public int getKarma()
     {
-        return -1;
+        return this.karma;
     }
 
     /**
      * @return player name
      */
-    public static String getName()
+    public String getName()
     {
-        return null;
+        return this.name;
     }
 
     /**
      * @return player Inventory
      */
-    public static Inventory getInventory()
+    public Inventory getInventory()
     {
-        return null;
+        return this.inventory;
     }
 
     /**
      * @param null
      */
-    public void setKarma()
+    public int addKarma(int value)
     {
+        this.karma += value;
 
+        return this.karma;
     }
 
     /**
      * @param null
      */
-    public void setName()
+    public String setName(String name)
     {
-        
+        this.name = name;
+
+        return this.name;
     }
 
     /**
      * @param null
      */
-    public void setInventory()
+    public Inventory addToInventory(Item item)
     {
-        
-    } 
+        this.inventory.addItem(item);        
+
+        return this.inventory;
+    }
+
+    /**
+     * @param null
+     */
+    public Inventory removeFromInventory(Item item)
+    {
+        this.inventory.removeItem(item);
+
+        return this.inventory;
+    }
+
 }
