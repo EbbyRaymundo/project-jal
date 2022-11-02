@@ -8,8 +8,12 @@ public class Start {
 
 		Player mainCharacter = new Player(playerName);
 
+		Item gun = new Item("Gun", "It's a gun");
+
+
 		System.out.println(mainCharacter.getName()); // Should be whatever the player types in
 		System.out.println(mainCharacter.getKarma()); // Should be 0
+		System.out.println(mainCharacter.addToInventory(gun));
 		System.out.println(mainCharacter.getInventory()); // idek
 
 	}

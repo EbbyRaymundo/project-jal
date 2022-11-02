@@ -78,7 +78,7 @@ public class Player {
      */
     public Inventory addToInventory(Item item)
     {
-        this.inventory.addItem(item);        
+        this.inventory.addItem(item);
 
         return this.inventory;
     }

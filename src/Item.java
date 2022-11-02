@@ -12,35 +12,48 @@ public class Item {
         this.name = "";
         this.description = "";
     }
+
+    /**
+     * Constructor
+     */
+    public Item (String name, String description)
+    {
+        this.name = name;
+        this.description = description;
+    }
     
     /**
      * @return Item name
      */
-    public static String getName()
+    public String getName()
     {
-        return null;
+        return this.name;
     }
     
     /**
      * @return Item description
      */
-    public static String getDescription() 
+    public String getDescription() 
     {
-        return null;
+        return this.description;
     }
 
     /**
      * @param null
      */
-    public void setName()
+    public String setName(String newName)
     {
+        this.name = newName;
 
+        return this.name;
     }
     /**
      * @param null
      */
-    public void setDescription() 
+    public String setDescription(String newDescription)
     {
-        
+        this.description = newDescription;
+
+        return this.description;
     }
 }
