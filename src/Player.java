@@ -76,7 +76,7 @@ public class Player {
     /**
      * @param null
      */
-    public Inventory addToInventory(Item item)
+    public Inventory addToInventory(Inventory.Item item)
     {
         this.inventory.addItem(item);
 
@@ -86,7 +86,7 @@ public class Player {
     /**
      * @param null
      */
-    public Inventory removeFromInventory(Item item)
+    public Inventory removeFromInventory(Inventory.Item item)
     {
         this.inventory.removeItem(item);
 
