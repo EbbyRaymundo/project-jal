@@ -26,11 +26,14 @@ public class Decisions {
     }
     
     /**
+     * Puts a new decision object into the decisions LinkedHashMap using
+     * its key 
      * @param decision Decision to append to ArrayList of Decision objects
+     * @return The previous Decision value if key existed, null if a new key
      */
-    public void addDecision(Decision decision)
+    public Decision addDecision(Decision decision)
     {
-        this.decisions.put(decision.getName(), decision);
+        return this.decisions.put(decision.getName(), decision);
     }
 
     /**

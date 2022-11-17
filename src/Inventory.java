@@ -20,13 +20,27 @@ public class Inventory {
     // Inventory by doing so. Should make a more deliberate method
     // such as clearInventory().
 
+    /**
+     * Constructor that uses the List<Item> input as the Player Inventory.
+     * @param items List of Item objects
+     */
+    public Inventory(List<Item> items) {
+
+        this.items = items;
+    }
+
+    /**
+     * Read the method
+     * @return The current Inventory
+     */
     public List<Item> getItems() {
 
         return this.items;
     }
     
     /**
-     * @param null
+     * 
+     * @param item Item object
      */
     public void addItem(Item item) {
 

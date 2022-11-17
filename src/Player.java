@@ -26,7 +26,6 @@ public class Player {
         this.karma = 0;
         this.name = name;
         this.inventory = inventory;
-        
     }
 
     /**

@@ -140,6 +140,5 @@ public class Events {
     
             return this.prompt;
         }
-
     }
 }
