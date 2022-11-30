@@ -1,5 +1,4 @@
 import java.util.ArrayList; // There may be items that have different names but the same descriptions
-import java.util.List;
 
 //import javax.print.Doc; // Why is this line even here???
 
@@ -24,16 +23,16 @@ public class Inventory {
      * Constructor that uses the List<Item> input as the Player Inventory.
      * @param items List of Item objects
      */
-    public Inventory(List<Item> items) {
+    public Inventory(ArrayList<Item> items) {
 
-        this.items = (ArrayList<Inventory.Item>) items;
+        this.items = items;
     }
 
     /**
      * Read the method
      * @return The current Inventory
      */
-    public List<Item> getItems() {
+    public ArrayList<Item> getItems() {
 
         return this.items;
     }
