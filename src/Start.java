@@ -2,6 +2,7 @@
 public class Start {
 
 	public static void main(String[] args) {
+		/*
 		System.out.println("Enter your name:");
 
 		String playerName = "" + System.console().readLine();
@@ -18,6 +19,8 @@ public class Start {
 		//System.out.println(mainCharacter.addToInventory(gun));
 		System.out.println(mainCharacter.getInventory()); // idek
 		System.out.println(myArray[1]);
+		*/
+		GUI tester = new GUI();
 
 	}
 
