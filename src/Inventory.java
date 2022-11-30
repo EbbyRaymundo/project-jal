@@ -26,7 +26,7 @@ public class Inventory {
      */
     public Inventory(List<Item> items) {
 
-        this.items = items;
+        this.items = (ArrayList<Inventory.Item>) items;
     }
 
     /**

@@ -1,26 +1,25 @@
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Collection;
 
 
 public class Decisions {
 
-    private LinkedHashMap<String, Decision> decisions; // the String key will represent the name of the event
+    private LinkedHashMap<String, Choice> decisions; // the String key will represent the name of the event
 
     /**
-     * Event constructor that creates an empty Events master list
-     * that contains no Event objects.
+     * Event constructor that creates an empty Decisons master list
+     * that contains no Choice objects.
      */
     public Decisions() {
 
-        this.decisions = new LinkedHashMap<String, Decision>();
+        this.decisions = new LinkedHashMap<String, Choice>();
     }
 
     /*
      * @TODO: Return an iterable of the map instead of the whole damn thing (Fixt but untested)
      * @return ArrayList of Decision objects
      */
-    public Collection<Decision> getDecisions()
+    public Collection<Choice> getDecisions()
     {
         return this.decisions.values();
     }
@@ -28,30 +27,30 @@ public class Decisions {
     /**
      * Puts a new decision object into the decisions LinkedHashMap using
      * its key 
-     * @param decision Decision to append to ArrayList of Decision objects
-     * @return The previous Decision value if key existed, null if a new key
+     * @param choice Choice to append to the LinkedHashMap of Choice objects
+     * @return The previous Choice value if key existed, null if a new key
      */
-    public Decision addDecision(Decision decision)
+    public Choice addDecision(Choice choice)
     {
-        return this.decisions.put(decision.getName(), decision);
+        return this.decisions.put(choice.getName(), choice);
     }
 
     /**
      * 
-     * @param decision
-     * @return The Event object associated with the Event name
+     * @param choice
+     * @return The Choice object associated with the Choice name
      */
-    public Decision removeDecision(Decision decision)
+    public Choice removeDecision(Choice choice)
     {
-        return this.decisions.remove(decision.getName());
+        return this.decisions.remove(choice.getName());
     }
 
     /**
-     * Decision subclass stores all the data members of the
-     * Decision object. The Decision object is referenced by
+     * Choice subclass stores all the data members of the
+     * Choice object. The Choice object is referenced by
      * the Decisions class LinkedHashMap.
      */
-    public class Decision {
+    public class Choice {
 
         private String name;
 
@@ -68,7 +67,7 @@ public class Decisions {
         /**
          * Constructor
          */
-        public Decision ()
+        public Choice ()
         {
             this.name = "";
             this.text = "";
@@ -79,7 +78,7 @@ public class Decisions {
         }
 
         /**
-         * @return Decision name
+         * @return Choice name
          */
         public String getName( )
         {
@@ -87,17 +86,17 @@ public class Decisions {
         }
 
         /**
-         * @return Decision text
+         * @return Choice text
          */
-        public  String getText( )
+        public String getText( )
         {
             return this.text;
         }
 
         /**
-         * @return next Event
+         * @return next Situation
          */
-        public Events.Event getNextEvent( )
+        public Events.Situation getNextSituation( )
         {
             return null;
         }

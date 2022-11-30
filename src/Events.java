@@ -1,6 +1,5 @@
 import java.util.LinkedHashMap;
 import java.util.Collection;
-import java.util.Map;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Events {
 
-    private LinkedHashMap<String, Event> events; // the String key will represent the name of the event
+    private LinkedHashMap<String, Situation> eventMap; // the String key will represent the name of the eventInMap
 
     /**
      * Event constructor that creates an empty Events master list
@@ -18,55 +17,55 @@ public class Events {
      */
     public Events() {
 
-        this.events = new LinkedHashMap<String, Event>();
+        this.eventMap = new LinkedHashMap<String, Situation>();
     }
 
     /*
      * @TODO: Return an iterable of the map instead of the whole damn thing (Fixt but untested)
      * @return ArrayList of Decision objects
      */
-    public Collection<Event> getEvents()
+    public Collection<Situation> getEvents()
     {
-        return this.events.values();
+        return this.eventMap.values();
     }
     
     /**
      * @param decision Decision to append to ArrayList of Decision objects
      */
-    public void addEvent(Event event)
+    public void addEvent(Situation eventInMap)
     {
-        this.events.put(event.getName(), event);
+        this.eventMap.put(eventInMap.getName(), eventInMap);
     }
 
     /**
      * 
-     * @param event
+     * @param eventInMap
      * @return The Event object associated with the Event name
      */
-    public Event removeEvent(Event event)
+    public Situation removeEvent(Situation eventInMap)
     {
-        return this.events.remove(event.getName());
+        return this.eventMap.remove(eventInMap.getName());
     }
 
     /**
-     * Event subclass stores the name and prompt of the
-     * Event object. The Event object is referenced by
+     * Situation subclass stores the name and prompt of the
+     * Situation object. The Situation object is referenced by
      * the Events class LinkedHashMap.
      */
-    public class Event {
+    public class Situation {
 
         private String name;
         private String prompt;
-        private ArrayList<Decisions.Decision> decisions;
+        private ArrayList<Decisions.Choice> decisions;
 
         /**
          * Event constructor that creates an Event with a prompt but
          * doesn't point to any Decisions.
          * @param prompt
          */
-        public Event(String name, String prompt)
+        public Situation(String name, String prompt)
         {
-            this.decisions = new ArrayList<Decisions.Decision>();
+            this.decisions = new ArrayList<Decisions.Choice>();
             this.prompt = prompt;
         }
 
@@ -75,7 +74,7 @@ public class Events {
          * @param decisions
          * @return The newly added Decision object
          */
-        public ArrayList<Decisions.Decision> setDecisions(ArrayList<Decisions.Decision> decisions){
+        public ArrayList<Decisions.Choice> setDecisions(ArrayList<Decisions.Choice> decisions){
 
             this.decisions = decisions;
 
@@ -86,19 +85,19 @@ public class Events {
          * 
          * @param decision
          */
-        public void addDecision(Decisions.Decision decision){
+        public void addChoice(Decisions.Choice choice){
 
-            this.decisions.add(decision);
+            this.decisions.add(choice);
 
         }
 
         /**
          * 
-         * @param decision
+         * @param choice
          */
-        public void removeDecision(Decisions.Decision decision){
+        public void removeChoice(Decisions.Choice choice){
 
-            this.decisions.remove(decision);
+            this.decisions.remove(choice);
 
         }
         
@@ -123,7 +122,7 @@ public class Events {
 
         /**
         * 
-        * @return prompt string of the Event object
+        * @return prompt string of the Situation object
         */
         public String getPrompt()
         {
