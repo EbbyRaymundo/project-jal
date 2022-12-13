@@ -17,19 +17,27 @@ public class GUI extends JFrame implements ActionListener{
     //declare parts of GUI so they can be seen by other components of the GUI
     private static JPanel mainPanel;
     private static JPanel depth;
+
+    private static JLabel inv;
     private static JLabel icon;
     private static JLabel characterName;
     private static JLabel hook;
+
     private static JTextArea prompt;
     private static JScrollPane scrollingPrompt;
+
     private static JTextArea label1;
     private static JTextArea label2;
     private static JTextArea label3;
     private static JTextArea label4;
+
+    private static JButton start;
+    private static JButton cancel;
     private static JButton button1;
     private static JButton button2;
     private static JButton button3;
     private static JButton button4;
+
     private static Color backgroundDarkGray = new Color(0x222327);
     private static Color borderGray = new Color(0x475059);
     private static Color textTan = new Color(0x8c8477);
@@ -48,73 +56,64 @@ public class GUI extends JFrame implements ActionListener{
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
-
-
-//
-        //mainPanel is the MAIN PANEL
-//
-
-        mainPanel = new JPanel();
+        mainPanel = new JPanel();       //Main Panel
         mainPanel.setLayout(null);
         mainPanel.setBackground(backgroundDarkGray);
+
         add(mainPanel);
 
-        depth = new JPanel();
+        depth = new JPanel();           //Panel for Photos
         depth.setBounds(830, 50, 350, 400);
-        depth.setBackground(borderGray);
+        depth.setBackground(darkTan);
         depth.setBorder(new LineBorder(darkTan,3));
+
         mainPanel.add(depth);
 
-        icon = new JLabel();
+        icon = new JLabel();            //Image for Photo Panel
         Image image = new ImageIcon("src//photos//me_when_java.jpg").getImage();
-        Image scaledImage = image.getScaledInstance(depth.getWidth(), depth.getHeight(), Image.SCALE_SMOOTH);
+        Image scaledImage = image.getScaledInstance((depth.getWidth() - 10), (depth.getHeight() - 10), Image.SCALE_SMOOTH);
         icon.setIcon(new ImageIcon(scaledImage));
+        icon.setBounds(0,0,350,400);
+
         depth.add(icon);
 
-
-        // Setting character name that will always be present at the top of the GUI
-        characterName = new JLabel("Harrier");
-        characterName.setBounds(5,5,100,30 );
+        characterName = new JLabel();   //Character Name    
+        characterName.setBounds(5,5,300,30 );
         characterName.setFont(new Font("Serif", Font.BOLD, 24));
         characterName.setForeground(myYellow);
+
         mainPanel.add(characterName);
 
-        hook = new JLabel("Time is a Circle");
+        hook = new JLabel();            //Flavor Text
         hook.setBounds(550, 450, 200,30);
         hook.setFont((new Font("Serif", Font.BOLD, 15)));
         hook.setForeground(myYellow);   
+        hook.setText("Time is a Circle");
+
         mainPanel.add(hook);
 
-
-        //creates the prompt.JTextArea and fills it with text
-        prompt = new JTextArea();
-        //we will eventually use files for this part
-        prompt.setText("The demo for DSDA that's all I care about. I am not going to stream as I do not care for an audience and am not influenced by the accusations of an envious stranger. I only streamed briefly for a short time in the past out of curiosity, but it does not interest me nor do I feel passion for it. I haven't watched Twitch in over a year, I was drawn to it in my spare time during the short period prior to my first full time job after finishing my studies. My life has changed a lot in the past two years and their are far more important aspects in life which draw my attention, I have little free time as well. Also you must be very self-conscious if you honestly think one has to stream their demo to demonstrate they aren't cheating, that just indicates your disrespect and distrust towards other players with exceptional playing ability, you'll never be a talented survivalist like me :) Let me make it clear I don't give a damn what you or anyone else thinks of me, when I am passionate about a subject I will speak my mind truthfully even if it means being brash at times, both online and in real life, I won't be intimidated by anyone and will confront them with assertion and confidence. I'm here for fun, making speedruns and commenting on subjects once in a while which capture my eye. Thank you for revealing your true colors, seething with jealously and enveloped by arrogance, you've lost what respect I had for you. If you've come to your senses you will offer an apology, take a good luck in the mirror before you make such a disgusting accusation against a fellow Doom player, who has not caused strife and discord but shows humility and respect with a care free attitude, or will you continue this charade and repeat history, replicating the case of Okuplok? If you do continue to accuse, it will be solely for my amusement as I will not take you seriously and will likely ignore you. Choose wisely.");
+        
+        prompt = new JTextArea();       //Prompt Panel with Scrollbar
         prompt.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
-        //title = BorderFactory.createTitledBorder(null)
         prompt.setLineWrap(true);
         prompt.setWrapStyleWord(true);
         prompt.setEditable(false);
         prompt.setBackground(backgroundDarkGray);
         prompt.setForeground(textTan);
-        
-        
-
-        //creates sp.JScrollPane and applies it to the prompt
-        //
-        scrollingPrompt = new JScrollPane(prompt);
+        //wraps in scrollpane()
+        scrollingPrompt = new JScrollPane(prompt);        //creates sp.JScrollPane and applies it to the prompt
         scrollingPrompt.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
         scrollingPrompt.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollingPrompt.setBounds(5,40,800,400); // we want the panel to be wider than it is tall for reading purposes
         scrollingPrompt.setBorder(new LineBorder(brickRed, 2));
         JScrollBar scrollBar = scrollingPrompt.getVerticalScrollBar();
         scrollBar.setBackground(darkGreen);
+
         mainPanel.add(scrollingPrompt);
 
         //Adds the text areas for the choices
         //
-        label1 = new JTextArea();
+        label1 = new JTextArea();       //First Choice Label
         label1.setEditable(false);
         label1.setBounds(25,500,250,200);
         label1.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
@@ -123,10 +122,10 @@ public class GUI extends JFrame implements ActionListener{
         label1.setBackground(null);
         label1.setForeground(textTan);
         label1.setBorder(new LineBorder(brickRed));
-        label1.setText("This is the first Choice:\n Something straightforward");
 
+        mainPanel.add(label1);
 
-        label2 = new JTextArea();
+        label2 = new JTextArea();       //Second Choice Label
         label2.setEditable(false);
         label2.setBounds(325,500,250,200);
         label2.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
@@ -135,9 +134,10 @@ public class GUI extends JFrame implements ActionListener{
         label2.setBackground(null);
         label2.setForeground(textTan);
         label2.setBorder(new LineBorder(brickRed));
-        label2.setText("This is the first Choice:\n Something straightforward");
 
-        label3 = new JTextArea();
+        mainPanel.add(label2);
+
+        label3 = new JTextArea();       //Third Choice Label
         label3.setEditable(false);
         label3.setBounds(625,500,250,200);
         label3.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
@@ -146,9 +146,10 @@ public class GUI extends JFrame implements ActionListener{
         label3.setBackground(null);
         label3.setForeground(textTan);
         label3.setBorder(new LineBorder(brickRed));
-        label3.setText("This is the first Choice:\n Something straightforward");
 
-        label4 = new JTextArea();
+        mainPanel.add(label3);
+
+        label4 = new JTextArea();       //Fourth Choice Label
         label4.setEditable(false);
         label4.setBounds(925,500,250,200);
         label4.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
@@ -157,12 +158,25 @@ public class GUI extends JFrame implements ActionListener{
         label4.setBackground(null);
         label4.setForeground(textTan);
         label4.setBorder(new LineBorder(brickRed));
-        label4.setText("This is the first \nChoice:\n Something \nstraightforward");
 
-        mainPanel.add(label1);
-        mainPanel.add(label2);
-        mainPanel.add(label3);
         mainPanel.add(label4);
+
+        //Adds the Start and Cancel buttons
+        start = new JButton("Start");//Start Button + Name Entry
+        start.setBounds(875,15,100,20);
+        start.setBackground(darkGreen);
+        start.setBorder(new LineBorder(choiceGreen,3));
+        start.setForeground(myYellow);
+        start.addActionListener(this);
+        mainPanel.add(start);        
+
+        cancel = new JButton("Exit");//Cancel Button (Closes Program)
+        cancel.setBounds(1025 , 15, 100,20);
+        cancel.setBackground(darkGreen);
+        cancel.setBorder(new LineBorder(choiceGreen,3));
+        cancel.setForeground(myYellow);
+        cancel.addActionListener(this);
+        mainPanel.add(cancel);
 
         //Adds the buttons for the choices to the GUI
         //
@@ -173,6 +187,7 @@ public class GUI extends JFrame implements ActionListener{
         button1.setForeground(myYellow);
         button1.setBorder(new LineBorder(darkGreen,3));
         button1.addActionListener(this);
+
         mainPanel.add(button1);
 
         button2 = new JButton("Select");
@@ -182,6 +197,7 @@ public class GUI extends JFrame implements ActionListener{
         button2.setForeground(myYellow);
         button2.setBorder(new LineBorder(darkGreen,3));
         button2.addActionListener(this);
+
         mainPanel.add(button2);
 
         button3 = new JButton("Select");
@@ -191,6 +207,7 @@ public class GUI extends JFrame implements ActionListener{
         button3.setForeground(myYellow);
         button3.setBorder(new LineBorder(darkGreen,3));
         button3.addActionListener(this);
+
         mainPanel.add(button3);
 
         button4 = new JButton("Select");
@@ -200,6 +217,7 @@ public class GUI extends JFrame implements ActionListener{
         button4.setForeground(myYellow);
         button4.setBorder(new LineBorder(darkGreen,3));
         button4.addActionListener(this);
+
         mainPanel.add(button4);
 
 
@@ -208,10 +226,21 @@ public class GUI extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == button1){}
+        if(e.getSource() == button1){
+
+        }
         if(e.getSource() == button2){}
         if(e.getSource() == button3){}
         if(e.getSource() == button4){}
+        if(e.getSource() == start){
+            String input = JOptionPane.showInputDialog("Please enter your name:");
+			if(!input.equals("")){
+			characterName.setText(input);
+            }
+        }
+        if(e.getSource() == cancel){
+            System.exit(0);
+        }
     }
 
 
