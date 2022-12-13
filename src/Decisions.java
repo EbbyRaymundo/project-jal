@@ -48,47 +48,27 @@ public class Decisions {
 
         private String text;
         private int nextSituationKey;
-        // NEGATIVE_INFINITY if there is no threshold
-        private double karmaThreshold;
         // this will serve as the Item condition for being able to select this Choice
         private int itemKey;
 
         /**
          * Constructor
          */
-        public Choice (String text, int nextSituationKey, int karmaThreshold, int itemKey)
+        public Choice (String text, int nextSituationKey, int itemKey)
         {
             this.text = text;
             this.nextSituationKey = nextSituationKey;
-            this.karmaThreshold = karmaThreshold;
             this.itemKey = itemKey;
         }
 
         /**
          * Constructor
          */
-        public Choice (String text, int nextSituationKey, double karmaThreshold)
+        public Choice (String text, int nextSituationKey)
         {
             this.text = text;
             this.nextSituationKey = nextSituationKey;
-            this.karmaThreshold = karmaThreshold;
             this.itemKey = -1;
-        }
-
-        public Choice (String text, int nextSituationKey, int itemKey) {
-
-            this.text = text;
-            this.nextSituationKey = nextSituationKey;
-            this.itemKey = itemKey;
-            this.karmaThreshold = Double.NEGATIVE_INFINITY;
-        }
-
-        public Choice (String text, int nextSituationKey) {
-
-            this.text = text;
-            this.nextSituationKey = nextSituationKey;
-            this.itemKey = -1;
-            this.karmaThreshold = Double.NEGATIVE_INFINITY;
         }
 
         /**
@@ -105,14 +85,6 @@ public class Decisions {
         public int getNextSituation( )
         {
             return this.nextSituationKey;
-        }
-
-        /**
-         * @return karma threshold
-         */
-        public double getKarmaThreshold( )
-        {
-            return this.karmaThreshold;
         }
 
         /**
@@ -141,14 +113,6 @@ public class Decisions {
         /**
          * @param null
          */
-        public void setKarmaThreshold(int newKarmaThreshold)
-        {
-            this.karmaThreshold = newKarmaThreshold;
-        }
-
-        /**
-         * @param null
-         */
         public int setItemCondition(int newItemKey)
         {
             int oldItemKey = this.itemKey;
@@ -157,10 +121,14 @@ public class Decisions {
             return oldItemKey;
         }
 
+        /**
+         * This method checks if the Choice has a conditonal Item to
+         * be able to select it (-1) or if the itemKey is within the
+         * player's items.
+         */
         public boolean isAvailable() {
 
-            return(this.itemKey == -1 || (Inventory.getPlayerItems().contains(this.itemKey) && Player.getKarma() >= this.karmaThreshold));
-            
+            return this.itemKey == -1 || Inventory.getPlayerItems().contains(this.itemKey);
         }
     }
 }

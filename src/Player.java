@@ -5,7 +5,6 @@
 
 public class Player {
 
-    private static int karma;
     private static String name;
 
     /**
@@ -13,17 +12,7 @@ public class Player {
      */
     public Player(String playerName)
     {
-        karma = 0;
         name = playerName;
-    }
-
-
-    /**
-     * @return player karma
-     */
-    public static int getKarma()
-    {
-        return karma;
     }
 
     /**
@@ -32,16 +21,6 @@ public class Player {
     public String getName()
     {
         return name;
-    }
-
-    /**
-     * @param value Can be a positive or negative value.
-     */
-    public static int addKarma(int value)
-    {
-        karma += value;
-
-        return karma;
     }
 
     /**
