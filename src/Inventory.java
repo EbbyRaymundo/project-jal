@@ -1,55 +1,75 @@
-import java.util.ArrayList; // There may be items that have different names but the same descriptions
-
-//import javax.print.Doc; // Why is this line even here???
+import java.util.ArrayList;
 
 public class Inventory {
 
     // We could use a linked list instead here if we were to be more readily
-    // removing items but at the moment we are using an array list 
-    private ArrayList<Item> items;
-
-    public Inventory() {
-
-        this.items = new ArrayList<Item>();
-    }
-
-    // @TODO: add a constructor that lets the user construct Inventory
-    // using List<Item> as input. Would be goofy to give them a method
-    // that does is since they could just overwrite the entire
-    // Inventory by doing so. Should make a more deliberate method
-    // such as clearInventory().
+    // removing items but at the moment we are using an array list. We currently
+    // do not plan to remove items in our implementation
+    private static ArrayList<Item> fullItemList;
+    private static ArrayList<Integer> playerItemList;
 
     /**
-     * Constructor that uses the List<Item> input as the Player Inventory.
+     * Default constructor to create an empty player Inventory
+     * and an empty Item master list.
+     */
+    public Inventory() {
+
+        fullItemList = new ArrayList<Item>();
+        playerItemList = new ArrayList<Integer>();
+    }
+
+    public Inventory(ArrayList<Item> allItems) {
+
+        fullItemList = allItems;
+    }
+
+    /**
+     * Constructor that uses the provided ArrayList of items
+     * to start the player with. Must provide the corresponding
+     * fullItemList to know what they correspond to
      * @param items List of Item objects
      */
-    public Inventory(ArrayList<Item> items) {
+    public Inventory(ArrayList<Item> allItems, ArrayList<Integer> startingItems) {
 
-        this.items = items;
+        fullItemList = allItems;
+        playerItemList = startingItems;
+    }
+
+    /**
+     * To retrieve an item from the fullItemList by its integer key
+     * @return Item at index i
+     */
+    public Item getItemFromFullList(int i) {
+
+        return fullItemList.get(i);
     }
 
     /**
      * Read the method
      * @return The current Inventory
      */
-    public ArrayList<Item> getItems() {
+    public static ArrayList<Integer> getPlayerItems() {
 
-        return this.items;
+        return playerItemList;
     }
     
     /**
-     * 
      * @param item Item object
      */
-    public void addItem(Item item) {
+    public void addItem(Item newItem) {
 
-        this.items.add(item);
+        fullItemList.add(newItem);
     }
 
-    public void removeItem(Item item) {
+    public Item removeItem(int itemKey) {
 
-        this.items.remove(item);
+        return fullItemList.remove(itemKey);
 
+    }
+
+    public void addPlayerItem(int itemKey) {
+
+        playerItemList.add(itemKey);
     }
 
     /**
@@ -61,17 +81,7 @@ public class Inventory {
     public class Item {
 
         private String name;
-        
         private String description;
-        
-        /**
-         * Constructor
-         */
-        public Item ()
-        {
-            this.name = "";
-            this.description = "";
-        }
     
         /**
          * Constructor
@@ -99,22 +109,25 @@ public class Inventory {
         }
     
         /**
-         * @param null
+         * @param newName
          */
         public String setName(String newName)
         {
+            String oldName = this.name;
             this.name = newName;
     
-            return this.name;
+            return oldName;
         }
+
         /**
          * @param null
          */
         public String setDescription(String newDescription)
         {
+            String oldDescription = this.description;
             this.description = newDescription;
     
-            return this.description;
+            return oldDescription;
         }
     }
 }

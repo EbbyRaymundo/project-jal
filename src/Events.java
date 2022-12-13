@@ -1,15 +1,17 @@
-import java.util.LinkedHashMap;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.ArrayList;
 
 /**
  * Events class will hold the master list of all the Event objects.
- * An Event object in the Events list will point to its corresponding
- * Decision objects in the Decisions class master list.
+ * A Situation object in the eventList will point to its corresponding
+ * Choice objects in the Decisions class master list. Situations have
+ * a unique integer key (these are assigned by the developer when
+ * mapping our their game paths), hence the use of an ArrayList in the 
+ * master list for Events.
  */
 public class Events {
 
-    private LinkedHashMap<String, Situation> eventMap; // the String key will represent the name of the eventInMap
+    private static ArrayList<Situation> situationList; // the String key will represent the name of the eventInMap
 
     /**
      * Event constructor that creates an empty Events master list
@@ -17,108 +19,93 @@ public class Events {
      */
     public Events() {
 
-        this.eventMap = new LinkedHashMap<String, Situation>();
+        situationList = new ArrayList<Situation>();
     }
 
-    /*
-     * @TODO: Return an iterable of the map instead of the whole damn thing (Fixt but untested)
-     * @return ArrayList of Decision objects
-     */
-    public Collection<Situation> getEvents()
-    {
-        return this.eventMap.values();
+    public Events(ArrayList<Situation> newSituationList) {
+
+        situationList = newSituationList;
     }
+
     
     /**
-     * @param decision Decision to append to ArrayList of Decision objects
+     * @param newSituation
      */
-    public void addEvent(Situation eventInMap)
+    public static void addSituation(Situation newSituation)
     {
-        this.eventMap.put(eventInMap.getName(), eventInMap);
+        situationList.add(newSituation);
     }
 
     /**
-     * 
-     * @param eventInMap
-     * @return The Event object associated with the Event name
+     * The developer should maintain the integer key
+     * that corresponds to each Situation.
+     * @param situationInList
+     * @return The 
      */
-    public Situation removeEvent(Situation eventInMap)
+    public static Situation removeSituation(int situationKey)
     {
-        return this.eventMap.remove(eventInMap.getName());
+        return situationList.remove(situationKey);
     }
 
     /**
-     * Situation subclass stores the name and prompt of the
-     * Situation object. The Situation object is referenced by
-     * the Events class LinkedHashMap.
+     * Situation subclass stores the prompt and Choice List of the
+     * Situation object. The Situation object is referenced by the
+     * Events class LinkedHashMap.
      */
     public class Situation {
 
-        private String name;
         private String prompt;
-        private ArrayList<Decisions.Choice> decisions;
+        private int[] choices;
+        private int itemKey; // if you land on the item, you get this IFF hasItem is true
 
         /**
          * Event constructor that creates an Event with a prompt but
-         * doesn't point to any Decisions.
+         * doesn't point to any Decisions. The LinkedHashMap situations is
+         * hard coded to have a max of 4 Choice objects since the GUI will
+         * only have 4 buttons. It uses the default load factor of 0.75.
          * @param prompt
          */
-        public Situation(String name, String prompt)
+        public Situation(String prompt)
         {
-            this.decisions = new ArrayList<Decisions.Choice>();
+            this.choices = new int[4];
+            Arrays.fill(this.choices, -1);
             this.prompt = prompt;
+            this.itemKey = -1;
         }
 
         /**
-         * 
-         * @param decisions
-         * @return The newly added Decision object
+         * @param decisions Needs to be of size 4
+         * @return The newly added Choice integer keys
          */
-        public ArrayList<Decisions.Choice> setDecisions(ArrayList<Decisions.Choice> decisions){
+        public int[] setChoices(int[] newChoices){
 
-            this.decisions = decisions;
+            int[] oldChoices = this.choices;
+            this.choices = newChoices;
 
-            return this.decisions;
+            return oldChoices;
         }
 
-        /**
-         * 
-         * @param decision
-         */
-        public void addChoice(Decisions.Choice choice){
+        // may not actually be relevant
+        // /**
+        //  * 
+        //  * @param choice
+        //  */
+        // public void addChoice(int choice){
 
-            this.decisions.add(choice);
+        //     this.decisions.add(choice);
+        // }
 
-        }
+        // may not actually be relevant
+        // /**
+        //  * 
+        //  * @param choice
+        //  */
+        // public void removeChoice(Decisions.Choice choice){
 
-        /**
-         * 
-         * @param choice
-         */
-        public void removeChoice(Decisions.Choice choice){
+        //     this.decisions.remove(choice);
 
-            this.decisions.remove(choice);
-
-        }
+        // }
         
-        /**
-         * 
-         */
-        public String getName(){
-
-            return this.name;
-        }
-        
-        /**
-         * 
-         * @param name
-         */
-        public String setName(String name)
-        {
-            this.name = name;
-    
-            return this.name;
-        }
 
         /**
         * 
@@ -131,13 +118,23 @@ public class Events {
 
         /**
          * 
-         * @param prompt
+         * @param newPrompt
+         * @return the original prompt
          */
-        public String setPrompt(String prompt)
+        public String setPrompt(String newPrompt)
         {
-            this.prompt = prompt;
-    
-            return this.prompt;
+            String oldPrompt = this.prompt;
+            this.prompt = newPrompt;
+
+            return oldPrompt;
+        }
+
+        public int setItem(int newItemKey) {
+
+            int oldItemKey = this.itemKey;
+            this.itemKey = newItemKey;
+
+            return oldItemKey;
         }
     }
 }

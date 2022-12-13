@@ -1,6 +1,22 @@
 // Executes all other classes, will be the main class to instantiate all objects
 public class Start {
 
+	public static void testGUI() {
+
+		GUI tester = new GUI();
+
+	}
+
+	public static void testController() {
+
+
+	}
+
+	public static void testModel () {
+
+		
+	}
+
 	public static void main(String[] args) {
 		/*
 		System.out.println("Enter your name:");
@@ -20,8 +36,8 @@ public class Start {
 		System.out.println(mainCharacter.getInventory()); // idek
 		System.out.println(myArray[1]);
 		*/
-		GUI tester = new GUI();
-
+		testGUI();
+		testController();
+		testModel();
 	}
-
 }

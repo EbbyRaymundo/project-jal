@@ -1,10 +1,8 @@
-import java.util.LinkedHashMap;
-import java.util.Collection;
-
+import java.util.ArrayList;
 
 public class Decisions {
 
-    private LinkedHashMap<String, Choice> decisions; // the String key will represent the name of the event
+    private static ArrayList<Choice> choiceList; // the String key will represent the name of the event
 
     /**
      * Event constructor that creates an empty Decisons master list
@@ -12,16 +10,12 @@ public class Decisions {
      */
     public Decisions() {
 
-        this.decisions = new LinkedHashMap<String, Choice>();
+        choiceList = new ArrayList<Choice>();
     }
 
-    /*
-     * @TODO: Return an iterable of the map instead of the whole damn thing (Fixt but untested)
-     * @return ArrayList of Decision objects
-     */
-    public Collection<Choice> getDecisions()
-    {
-        return this.decisions.values();
+    public Decisions(ArrayList<Choice> newChoiceList) {
+
+        choiceList = newChoiceList;
     }
     
     /**
@@ -30,9 +24,9 @@ public class Decisions {
      * @param choice Choice to append to the LinkedHashMap of Choice objects
      * @return The previous Choice value if key existed, null if a new key
      */
-    public Choice addDecision(Choice choice)
+    public static void addChoice(Choice newChoice)
     {
-        return this.decisions.put(choice.getName(), choice);
+        choiceList.add(newChoice);
     }
 
     /**
@@ -40,9 +34,9 @@ public class Decisions {
      * @param choice
      * @return The Choice object associated with the Choice name
      */
-    public Choice removeDecision(Choice choice)
+    public static Choice removeDecision(int choiceKey)
     {
-        return this.decisions.remove(choice.getName());
+        return choiceList.remove(choiceKey);
     }
 
     /**
@@ -52,37 +46,32 @@ public class Decisions {
      */
     public class Choice {
 
-        private String name;
-
         private String text;
-
-        // @TODO think about how the Decision will reference the next
-        // Event in the Events master list.
-        private Events nextEvent;
-
+        private int nextSituationKey;
         private int karmaThreshold;
-
-        private int condition; // @TODO: Figure out how to set this
+        // this will serve as the Item condition for being able to select this Choice
+        private int itemKey;
 
         /**
          * Constructor
          */
-        public Choice ()
+        public Choice (String text, int karmaThreshold, int nextSituationKey, int itemKey)
         {
-            this.name = "";
-            this.text = "";
-            this.nextEvent = null;
-            this.karmaThreshold = 0;
-            //@TODO: Create a condition method
-            this.condition = -1;
+            this.text = text;
+            this.nextSituationKey = nextSituationKey;
+            this.karmaThreshold = karmaThreshold;
+            this.itemKey = itemKey;
         }
 
         /**
-         * @return Choice name
+         * Constructor
          */
-        public String getName( )
+        public Choice (String text, int karmaThreshold, int nextSituationKey)
         {
-            return this.name;
+            this.text = text;
+            this.nextSituationKey = nextSituationKey;
+            this.karmaThreshold = karmaThreshold;
+            this.itemKey = -1;
         }
 
         /**
@@ -96,9 +85,9 @@ public class Decisions {
         /**
          * @return next Situation
          */
-        public Events.Situation getNextSituation( )
+        public int getNextSituation( )
         {
-            return null;
+            return this.nextSituationKey;
         }
 
         /**
@@ -110,51 +99,51 @@ public class Decisions {
         }
 
         /**
-         * @return condition
+         * @param newText
+         * @return the original text
          */
-        public Inventory.Item getCondition( )
+        public String setText(String newText)
         {
-            return null;
+            String oldText = this.text;
+            this.text = newText;
+
+            return oldText;
         }
 
         /**
          * @param null
          */
-        public void setName( )
+        public int setNextSituation(int newSituationKey)
         {
+            int oldSituation = this.nextSituationKey;
+            this.nextSituationKey = newSituationKey;
 
+            return oldSituation;
         }
 
         /**
          * @param null
          */
-        public void setText( )
+        public void setKarmaThreshold(int newKarmaThreshold)
         {
-
+            this.karmaThreshold = newKarmaThreshold;
         }
 
         /**
          * @param null
          */
-        public void setNextEvent( )
+        public int setItemCondition(int newItemKey)
         {
+            int oldItemKey = this.itemKey;
+            this.itemKey = newItemKey;
 
+            return oldItemKey;
         }
 
-        /**
-         * @param null
-         */
-        public void setKarmaThreshold( )
-        {
+        public boolean isAvailable() {
 
-        }
-
-        /**
-         * @param null
-         */
-        public void setCondition( )
-        {
-
+            return(this.itemKey == -1 || (Inventory.getPlayerItems().contains(this.itemKey) && Player.getKarma() >= this.karmaThreshold));
+            
         }
     }
 }

@@ -1,5 +1,9 @@
 # Jal
 
+## TODO
+- Need to link model, viewer, and controller.
+- Need to add file parser to model
+
 ## Preface
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
