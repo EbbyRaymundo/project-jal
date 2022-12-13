@@ -13,5 +13,20 @@ Jal is a text-based story adventure that integrates a GUI for increased interact
 ## Running Jal
 To start the game, run the Start file.
 
+## Developing for Jal
+Jal's story flow is not hard-coded. You can create your own game with your own rules following the .slime format:
+
+```
+number_of_items number_of_situations number_of_choices
+situation_0_text 
+situation_1_text
+situation_2_text
+...
+situation_n_text
+preceding_situation_key following_situation_key 
+
+```
+
+
 ## Credits
 Developed by Eberardo Raymundo and William Willis.

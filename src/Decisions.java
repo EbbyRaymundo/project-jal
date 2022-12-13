@@ -48,14 +48,15 @@ public class Decisions {
 
         private String text;
         private int nextSituationKey;
-        private int karmaThreshold;
+        // NEGATIVE_INFINITY if there is no threshold
+        private double karmaThreshold;
         // this will serve as the Item condition for being able to select this Choice
         private int itemKey;
 
         /**
          * Constructor
          */
-        public Choice (String text, int karmaThreshold, int nextSituationKey, int itemKey)
+        public Choice (String text, int nextSituationKey, int karmaThreshold, int itemKey)
         {
             this.text = text;
             this.nextSituationKey = nextSituationKey;
@@ -66,12 +67,28 @@ public class Decisions {
         /**
          * Constructor
          */
-        public Choice (String text, int karmaThreshold, int nextSituationKey)
+        public Choice (String text, int nextSituationKey, double karmaThreshold)
         {
             this.text = text;
             this.nextSituationKey = nextSituationKey;
             this.karmaThreshold = karmaThreshold;
             this.itemKey = -1;
+        }
+
+        public Choice (String text, int nextSituationKey, int itemKey) {
+
+            this.text = text;
+            this.nextSituationKey = nextSituationKey;
+            this.itemKey = itemKey;
+            this.karmaThreshold = Double.NEGATIVE_INFINITY;
+        }
+
+        public Choice (String text, int nextSituationKey) {
+
+            this.text = text;
+            this.nextSituationKey = nextSituationKey;
+            this.itemKey = -1;
+            this.karmaThreshold = Double.NEGATIVE_INFINITY;
         }
 
         /**
@@ -93,7 +110,7 @@ public class Decisions {
         /**
          * @return karma threshold
          */
-        public int getKarmaThreshold( )
+        public double getKarmaThreshold( )
         {
             return this.karmaThreshold;
         }
