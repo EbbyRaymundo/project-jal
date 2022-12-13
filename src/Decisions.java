@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.io.FileReader;
-import java.io.BufferedReader;
 
 public class Decisions {
 
@@ -51,7 +49,7 @@ public class Decisions {
      * Choice object. The Choice object is referenced by
      * the Decisions class LinkedHashMap.
      */
-    public class Choice {
+    public static class Choice {
 
         private String text;
         private int nextSituationKey;

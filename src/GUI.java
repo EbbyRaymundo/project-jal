@@ -5,6 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
+import javax.swing.border.*;
 import javax.swing.*;
 
 import java.awt.Image;
@@ -16,20 +17,20 @@ import java.awt.event.ActionListener;
 public class GUI extends JFrame implements ActionListener{
     //declare parts of GUI so they can be seen by other components of the GUI
     private static JPanel mainPanel;
-    private static JPanel depth;
+    public static JPanel depth;
+    private static JPanel rectangle;
 
-    private static JLabel inv;
-    private static JLabel icon;
-    private static JLabel characterName;
+    public static JLabel icon;
+    public static JLabel characterName;
     private static JLabel hook;
 
-    private static JTextArea prompt;
+    public static JTextArea prompt;
     private static JScrollPane scrollingPrompt;
 
-    private static JTextArea label1;
-    private static JTextArea label2;
-    private static JTextArea label3;
-    private static JTextArea label4;
+    public static JTextArea label1;
+    public static JTextArea label2;
+    public static JTextArea label3;
+    public static JTextArea label4;
 
     private static JButton start;
     private static JButton cancel;
@@ -61,6 +62,17 @@ public class GUI extends JFrame implements ActionListener{
         mainPanel.setBackground(backgroundDarkGray);
 
         add(mainPanel);
+        
+        rectangle = new JPanel();       //Rectangle for Inventory
+        rectangle.setBounds(75, 780, 1050, 60);
+        rectangle.setBackground(null);
+        rectangle.setForeground(myYellow);
+        Border redLine = BorderFactory.createLineBorder(brickRed);// title stuff
+		TitledBorder title = BorderFactory.createTitledBorder(redLine, "Inventory");
+        title.setTitleColor(brickRed);
+        rectangle.setBorder(title);
+
+        mainPanel.add(rectangle);
 
         depth = new JPanel();           //Panel for Photos
         depth.setBounds(830, 50, 350, 400);
@@ -76,6 +88,12 @@ public class GUI extends JFrame implements ActionListener{
         icon.setBounds(0,0,350,400);
 
         depth.add(icon);
+
+
+        /* inv = new JLabel("Inventory");
+        inv.setBounds(600,800,100,50);
+        inv.setForeground(myYellow);
+        mainPanel.add(inv); */
 
         characterName = new JLabel();   //Character Name    
         characterName.setBounds(5,5,300,30 );
@@ -226,19 +244,35 @@ public class GUI extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == button1){
-
+        if(e.getSource() == button1){   //CHOICE 1
+            ActionOrg.action1();
         }
-        if(e.getSource() == button2){}
-        if(e.getSource() == button3){}
-        if(e.getSource() == button4){}
-        if(e.getSource() == start){
+        if(e.getSource() == button2){   //CHOICE 2
+            ActionOrg.action2();
+        }
+        if(e.getSource() == button3){   //CHOICE 3
+            ActionOrg.action3();
+        }
+        if(e.getSource() == button4){   //CHOICE 4
+            ActionOrg.action4();
+        }
+
+        if(e.getSource() == start){     // START
             String input = JOptionPane.showInputDialog("Please enter your name:");
 			if(!input.equals("")){
 			characterName.setText(input);
+            characterName.setText(input);
+
             }
+            try {
+                Thread.sleep(2000);
+            } catch (Exception f) {
+                // TODO: handle exception
+            }
+            prompt.setText("Prepare Yourself");
         }
-        if(e.getSource() == cancel){
+
+        if(e.getSource() == cancel){    //EXIT
             System.exit(0);
         }
     }

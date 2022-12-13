@@ -18,10 +18,16 @@ public class Start {
 	}
 
 	public static void readSlimeFile(String filePath) {
-
+		
+		try {
+			Inventory.readSlimeFile(filePath);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		Events.readSlimeFile(filePath);
 		Decisions.readSlimeFile(filePath);
-		Inventory.readSlimeFile(filePath);
+
 	}
 
 	public static void main(String[] args) {

@@ -25,33 +25,6 @@ public class Inventory {
         fullItemList = allItems;
     }
 
-    public static void readSlimeFile(String filePath) {
-
-        List<FastaSequence> fastaList = new ArrayList<FastaSequence>();
-        BufferedReader reader = new BufferedReader(new FileReader(filepath));
-
-        String line = reader.readLine().trim(); // sitting on the first line now
-
-        while (line != null) {
-
-            String header = line; // we're sitting on header line
-            line = reader.readLine(); // jump to next line to loop over seq lines
-
-            // The creator of fasta files was scared of long lines. I looked it up and there's
-            // pretty good reasons for it.
-            StringBuilder seq = new StringBuilder();
-
-            while (line != null && !line.startsWith(">")) {
-
-                seq.append(line.trim());
-                line = reader.readLine();
-            }
-
-            FastaSequence fastaObject = new FastaSequence(header, seq.toString());
-            fastaList.add(fastaObject);
-        }
-    }
-
     /**
      * Constructor that uses the provided ArrayList of items
      * to start the player with. Must provide the corresponding
@@ -62,6 +35,32 @@ public class Inventory {
 
         fullItemList = allItems;
         playerItemList = startingItems;
+    }
+
+    public static void readSlimeFile(String filePath) throws Exception {
+
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        // sitting on first line with number of items, situations, and choices
+        String[] line = reader.readLine().trim().split(" ");
+
+        new Inventory();
+
+        if (line.length == 2) { // if there's only 2 params, then there are no items in the game
+            reader.close();
+            return;
+        }
+
+        for (int i = 0; i < Integer.parseInt(line[0], 10); i++) {
+
+            // this line contains the item name in line[0] and the item
+            // description in line[1]
+            line = reader.readLine().trim().split(" ");
+           
+            Inventory.addItem(new Item(line[0], line[1]));
+        }
+
+        reader.close();
     }
 
     /**
@@ -85,7 +84,7 @@ public class Inventory {
     /**
      * @param item Item object
      */
-    public void addItem(Item newItem) {
+    public static void addItem(Item newItem) {
 
         fullItemList.add(newItem);
     }
@@ -107,7 +106,7 @@ public class Inventory {
      * calls to the inventory class. This makes sense in my head
      * so this is what we're going with.
      */
-    public class Item {
+    public static class Item {
 
         private String name;
         private String description;

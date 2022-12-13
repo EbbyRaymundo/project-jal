@@ -1,7 +1,5 @@
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.io.FileReader;
-import java.io.BufferedReader;
 
 /**
  * Events class will hold the master list of all the Event objects.
@@ -57,7 +55,7 @@ public class Events {
      * Situation object. The Situation object is referenced by the
      * Events class LinkedHashMap.
      */
-    public class Situation {
+    public static class Situation {
 
         private String prompt;
         private int[] choices;
