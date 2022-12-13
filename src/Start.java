@@ -17,6 +17,13 @@ public class Start {
 		
 	}
 
+	public static void readSlimeFile(String filePath) {
+
+		Events.readSlimeFile(filePath);
+		Decisions.readSlimeFile(filePath);
+		Inventory.readSlimeFile(filePath);
+	}
+
 	public static void main(String[] args) {
 		/*
 		System.out.println("Enter your name:");

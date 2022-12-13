@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class Inventory {
 
@@ -21,6 +23,33 @@ public class Inventory {
     public Inventory(ArrayList<Item> allItems) {
 
         fullItemList = allItems;
+    }
+
+    public static void readSlimeFile(String filePath) {
+
+        List<FastaSequence> fastaList = new ArrayList<FastaSequence>();
+        BufferedReader reader = new BufferedReader(new FileReader(filepath));
+
+        String line = reader.readLine().trim(); // sitting on the first line now
+
+        while (line != null) {
+
+            String header = line; // we're sitting on header line
+            line = reader.readLine(); // jump to next line to loop over seq lines
+
+            // The creator of fasta files was scared of long lines. I looked it up and there's
+            // pretty good reasons for it.
+            StringBuilder seq = new StringBuilder();
+
+            while (line != null && !line.startsWith(">")) {
+
+                seq.append(line.trim());
+                line = reader.readLine();
+            }
+
+            FastaSequence fastaObject = new FastaSequence(header, seq.toString());
+            fastaList.add(fastaObject);
+        }
     }
 
     /**

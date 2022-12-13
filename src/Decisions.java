@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class Decisions {
 
@@ -16,6 +18,11 @@ public class Decisions {
     public Decisions(ArrayList<Choice> newChoiceList) {
 
         choiceList = newChoiceList;
+    }
+
+    public static void readSlimeFile(String filePath) {
+
+
     }
     
     /**

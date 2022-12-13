@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 /**
  * Events class will hold the master list of all the Event objects.
@@ -27,7 +29,10 @@ public class Events {
         situationList = newSituationList;
     }
 
-    
+    public static void readSlimeFile(String filePath) {
+
+
+    }
     /**
      * @param newSituation
      */
