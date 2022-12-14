@@ -58,8 +58,7 @@ Somehow you wasted the rest of your life staring at that phone since you found t
 
 This is the corresponding story map for the master.slime example:
 
-![example story](jal.png "Story board of the master.slime file.")
-
+![example story](src/photos/jal.png "Story board of the master.slime file.")
 
 The most important constraint of JAL is that **you are limited to 4 choices per situation**.
 The second most important thing to remember is that **NUMBERING FOR ITEMS, SITUATIONS, AND CHOICES START AT 0**!
