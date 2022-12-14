@@ -8,14 +8,13 @@ import javax.swing.JButton;
 import javax.swing.border.*;
 import javax.swing.*;
 
-import java.awt.Image;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI extends JFrame implements ActionListener{
-    //declare parts of GUI so they can be seen by other components of the GUI
+public class GUI extends JFrame implements ActionListener {
+    // declare parts of GUI so they can be seen by other components of the GUI
     private static JPanel mainPanel;
     public static JPanel depth;
     private static JPanel rectangle;
@@ -32,12 +31,12 @@ public class GUI extends JFrame implements ActionListener{
     public static JTextArea label3;
     public static JTextArea label4;
 
-    private static JButton start;
-    private static JButton cancel;
-    private static JButton button1;
-    private static JButton button2;
-    private static JButton button3;
-    private static JButton button4;
+    public static JButton start;
+    public static JButton cancel;
+    public static JButton button1;
+    public static JButton button2;
+    public static JButton button3;
+    public static JButton button4;
 
     private static Color backgroundDarkGray = new Color(0x222327);
     private static Color borderGray = new Color(0x475059);
@@ -47,93 +46,86 @@ public class GUI extends JFrame implements ActionListener{
     private static Color choiceGreen = new Color(0x717341);
     private static Color darkGreen = new Color(0x545847);
     private static Color darkTan = new Color(0x8c8477);
-    
 
-    public GUI(){
+    public GUI() {
 
-        //Creating the Objects to stack
+        // Creating the Objects to stack
         super("J.ump A.nd L.ink");
-        setSize(1215,900);
+        setSize(1215, 900);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        mainPanel = new JPanel();       //Main Panel
+
+        mainPanel = new JPanel(); // Main Panel
         mainPanel.setLayout(null);
         mainPanel.setBackground(backgroundDarkGray);
 
         add(mainPanel);
-        
-        rectangle = new JPanel();       //Rectangle for Inventory
+
+        rectangle = new JPanel(); // Rectangle for Inventory
         rectangle.setBounds(75, 780, 1050, 60);
         rectangle.setBackground(null);
         rectangle.setForeground(myYellow);
         Border redLine = BorderFactory.createLineBorder(brickRed);// title stuff
-		TitledBorder title = BorderFactory.createTitledBorder(redLine, "Inventory");
+        TitledBorder title = BorderFactory.createTitledBorder(redLine, "Inventory");
         title.setTitleColor(brickRed);
         rectangle.setBorder(title);
 
         mainPanel.add(rectangle);
 
-        depth = new JPanel();           //Panel for Photos
+        depth = new JPanel(); // Panel for Photos
         depth.setBounds(830, 50, 350, 400);
         depth.setBackground(darkTan);
-        depth.setBorder(new LineBorder(darkTan,3));
+        depth.setBorder(new LineBorder(darkTan, 3));
 
         mainPanel.add(depth);
 
-        icon = new JLabel();            //Image for Photo Panel
-        Image image = new ImageIcon("src//photos//me_when_java.jpg").getImage();
-        Image scaledImage = image.getScaledInstance((depth.getWidth() - 10), (depth.getHeight() - 10), Image.SCALE_SMOOTH);
-        icon.setIcon(new ImageIcon(scaledImage));
-        icon.setBounds(0,0,350,400);
+        icon = new JLabel(); // Image for Photo Panel
 
-        depth.add(icon);
+        /*
+         * inv = new JLabel("Inventory");
+         * inv.setBounds(600,800,100,50);
+         * inv.setForeground(myYellow);
+         * mainPanel.add(inv);
+         */
 
-
-        /* inv = new JLabel("Inventory");
-        inv.setBounds(600,800,100,50);
-        inv.setForeground(myYellow);
-        mainPanel.add(inv); */
-
-        characterName = new JLabel();   //Character Name    
-        characterName.setBounds(5,5,300,30 );
+        characterName = new JLabel(); // Character Name
+        characterName.setBounds(5, 5, 300, 30);
         characterName.setFont(new Font("Serif", Font.BOLD, 24));
         characterName.setForeground(myYellow);
 
         mainPanel.add(characterName);
 
-        hook = new JLabel();            //Flavor Text
-        hook.setBounds(550, 450, 200,30);
+        hook = new JLabel(); // Flavor Text
+        hook.setBounds(550, 450, 200, 30);
         hook.setFont((new Font("Serif", Font.BOLD, 15)));
-        hook.setForeground(myYellow);   
+        hook.setForeground(myYellow);
         hook.setText("Time is a Circle");
 
         mainPanel.add(hook);
 
-        
-        prompt = new JTextArea();       //Prompt Panel with Scrollbar
+        prompt = new JTextArea(); // Prompt Panel with Scrollbar
         prompt.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         prompt.setLineWrap(true);
         prompt.setWrapStyleWord(true);
         prompt.setEditable(false);
         prompt.setBackground(backgroundDarkGray);
         prompt.setForeground(textTan);
-        //wraps in scrollpane()
-        scrollingPrompt = new JScrollPane(prompt);        //creates sp.JScrollPane and applies it to the prompt
-        scrollingPrompt.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+        // wraps in scrollpane()
+        scrollingPrompt = new JScrollPane(prompt); // creates sp.JScrollPane and applies it to the prompt
+        scrollingPrompt.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollingPrompt.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollingPrompt.setBounds(5,40,800,400); // we want the panel to be wider than it is tall for reading purposes
+        scrollingPrompt.setBounds(5, 40, 800, 400); // we want the panel to be wider than it is tall for reading
         scrollingPrompt.setBorder(new LineBorder(brickRed, 2));
         JScrollBar scrollBar = scrollingPrompt.getVerticalScrollBar();
         scrollBar.setBackground(darkGreen);
 
         mainPanel.add(scrollingPrompt);
 
-        //Adds the text areas for the choices
+        // Adds the text areas for the choices
         //
-        label1 = new JTextArea();       //First Choice Label
+        label1 = new JTextArea(); // First Choice Label
         label1.setEditable(false);
-        label1.setBounds(25,500,250,200);
+        label1.setBounds(25, 500, 250, 200);
         label1.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         label1.setWrapStyleWord(true);
         label1.setLineWrap(true);
@@ -143,9 +135,9 @@ public class GUI extends JFrame implements ActionListener{
 
         mainPanel.add(label1);
 
-        label2 = new JTextArea();       //Second Choice Label
+        label2 = new JTextArea(); // Second Choice Label
         label2.setEditable(false);
-        label2.setBounds(325,500,250,200);
+        label2.setBounds(325, 500, 250, 200);
         label2.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         label2.setWrapStyleWord(true);
         label2.setLineWrap(true);
@@ -155,9 +147,9 @@ public class GUI extends JFrame implements ActionListener{
 
         mainPanel.add(label2);
 
-        label3 = new JTextArea();       //Third Choice Label
+        label3 = new JTextArea(); // Third Choice Label
         label3.setEditable(false);
-        label3.setBounds(625,500,250,200);
+        label3.setBounds(625, 500, 250, 200);
         label3.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         label3.setWrapStyleWord(true);
         label3.setLineWrap(true);
@@ -167,9 +159,9 @@ public class GUI extends JFrame implements ActionListener{
 
         mainPanel.add(label3);
 
-        label4 = new JTextArea();       //Fourth Choice Label
+        label4 = new JTextArea(); // Fourth Choice Label
         label4.setEditable(false);
-        label4.setBounds(925,500,250,200);
+        label4.setBounds(925, 500, 250, 200);
         label4.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         label4.setWrapStyleWord(true);
         label4.setLineWrap(true);
@@ -179,104 +171,97 @@ public class GUI extends JFrame implements ActionListener{
 
         mainPanel.add(label4);
 
-        //Adds the Start and Cancel buttons
-        start = new JButton("Start");//Start Button + Name Entry
-        start.setBounds(875,15,100,20);
+        // Adds the Start and Cancel buttons
+        start = new JButton("Start");// Start Button + Name Entry
+        start.setBounds(875, 15, 100, 20);
         start.setBackground(darkGreen);
-        start.setBorder(new LineBorder(choiceGreen,3));
+        start.setBorder(new LineBorder(choiceGreen, 3));
         start.setForeground(myYellow);
         start.addActionListener(this);
-        mainPanel.add(start);        
 
-        cancel = new JButton("Exit");//Cancel Button (Closes Program)
-        cancel.setBounds(1025 , 15, 100,20);
+        mainPanel.add(start);
+
+        cancel = new JButton("Exit");// Cancel Button (Closes Program)
+        cancel.setBounds(1025, 15, 100, 20);
         cancel.setBackground(darkGreen);
-        cancel.setBorder(new LineBorder(choiceGreen,3));
+        cancel.setBorder(new LineBorder(choiceGreen, 3));
         cancel.setForeground(myYellow);
         cancel.addActionListener(this);
+
         mainPanel.add(cancel);
 
-        //Adds the buttons for the choices to the GUI
+        // Adds the buttons for the choices to the GUI
         //
         button1 = new JButton("Select");
-        button1.setBounds(25,700,250,50);
+        button1.setBounds(25, 700, 250, 50);
         button1.setBackground(choiceGreen);
         button1.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         button1.setForeground(myYellow);
-        button1.setBorder(new LineBorder(darkGreen,3));
+        button1.setBorder(new LineBorder(darkGreen, 3));
         button1.addActionListener(this);
 
         mainPanel.add(button1);
 
         button2 = new JButton("Select");
-        button2.setBounds(325,700,250,50);
+        button2.setBounds(325, 700, 250, 50);
         button2.setBackground(choiceGreen);
         button2.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         button2.setForeground(myYellow);
-        button2.setBorder(new LineBorder(darkGreen,3));
+        button2.setBorder(new LineBorder(darkGreen, 3));
         button2.addActionListener(this);
 
         mainPanel.add(button2);
 
         button3 = new JButton("Select");
-        button3.setBounds(625, 700, 250,50);
+        button3.setBounds(625, 700, 250, 50);
         button3.setBackground(choiceGreen);
         button3.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         button3.setForeground(myYellow);
-        button3.setBorder(new LineBorder(darkGreen,3));
+        button3.setBorder(new LineBorder(darkGreen, 3));
         button3.addActionListener(this);
 
         mainPanel.add(button3);
 
         button4 = new JButton("Select");
-        button4.setBounds(925, 700, 250,50);
+        button4.setBounds(925, 700, 250, 50);
         button4.setBackground(choiceGreen);
         button4.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
         button4.setForeground(myYellow);
-        button4.setBorder(new LineBorder(darkGreen,3));
+        button4.setBorder(new LineBorder(darkGreen, 3));
         button4.addActionListener(this);
 
         mainPanel.add(button4);
 
-
-		setVisible(true);
+        setVisible(true);
         setLocationRelativeTo(null);
     }
-    
+
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == button1){   //CHOICE 1
-            ActionOrg.action1();
+        if (e.getSource() == button1) { // CHOICE 1
+            Controller.action1();
         }
-        if(e.getSource() == button2){   //CHOICE 2
-            ActionOrg.action2();
+        if (e.getSource() == button2) { // CHOICE 2
+            Controller.action2();
         }
-        if(e.getSource() == button3){   //CHOICE 3
-            ActionOrg.action3();
+        if (e.getSource() == button3) { // CHOICE 3
+            Controller.action3();
         }
-        if(e.getSource() == button4){   //CHOICE 4
-            ActionOrg.action4();
+        if (e.getSource() == button4) { // CHOICE 4
+            Controller.action4();
         }
 
-        if(e.getSource() == start){     // START
+        if (e.getSource() == start) { // START
             String input = JOptionPane.showInputDialog("Please enter your name:");
-			if(!input.equals("")){
-			characterName.setText(input);
-            characterName.setText(input);
+            if (!input.equals("")) {
+                characterName.setText(input);
+                Controller.setImage("me_when_java.jpg");
 
             }
-            try {
-                Thread.sleep(2000);
-            } catch (Exception f) {
-                // TODO: handle exception
-            }
-            prompt.setText("Prepare Yourself");
         }
 
-        if(e.getSource() == cancel){    //EXIT
+        if (e.getSource() == cancel) { // EXIT
             System.exit(0);
         }
     }
-
-
 
 }
