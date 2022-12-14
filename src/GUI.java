@@ -44,7 +44,7 @@ public class GUI extends JFrame implements ActionListener {
 
     private static int promptTextSize = 40;
     private static int labelTextSize = 30;
-    private static int invTextSize = 30;
+    private static int invTextSize = 20;
     private static Color backgroundDarkGray = new Color(0x222327);
     private static Color textTan = new Color(0x8c8477);
     private static Color brickRed = new Color(0xa54b29);

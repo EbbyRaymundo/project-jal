@@ -124,7 +124,7 @@ public class Controller {
 
     public static void setImage(String imageName) {
         if (currentSituation.hasImage()) {
-            Image image = new ImageIcon("src//photos//" + imageName).getImage();
+            Image image = new ImageIcon("photos/" + imageName).getImage();
             Image scaledImage = image.getScaledInstance((GUI.depth.getWidth() - 10), (GUI.depth.getHeight() - 10),
                     Image.SCALE_SMOOTH);
             GUI.icon.setIcon(new ImageIcon(scaledImage));
