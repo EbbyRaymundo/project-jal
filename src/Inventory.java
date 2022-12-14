@@ -23,6 +23,7 @@ public class Inventory {
     public Inventory(ArrayList<Item> allItems) {
 
         fullItemList = allItems;
+        playerItemList = new ArrayList<Integer>();
 
     }
 

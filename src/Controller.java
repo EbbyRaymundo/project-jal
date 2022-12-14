@@ -74,7 +74,7 @@ public class Controller {
     public static void choiceSet(Events.Situation sit) {
 
         for (int i = 0; i < 4; i++) {
-            
+            //
             if (i < sit.getChoices().size() && Decisions.choiceList.get(sit.getChoices().get(i)).isAvailable()) {
 
                 set(i, Decisions.choiceList.get(sit.getChoices().get(i)).getText(),
