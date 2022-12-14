@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Decisions {
-
+    
     public static ArrayList<Choice> choiceList; // master list of Choice objects
 
     /**
@@ -51,10 +51,10 @@ public class Decisions {
             }
         }
 
-        // both cases (line.length == 2 and line.length == 3) need 
+        // both cases (line.length == 2 and line.length == 3) need
         // to do this step so we'll just do it outside the if statement
         for (int i = 0; i < numSituations; i++) {
-            
+
             reader.readLine();
         }
 
@@ -72,12 +72,11 @@ public class Decisions {
             int followingKey = Integer.parseInt(line[1]);
             String text = line[2];
 
-
             // in this case, we know line[0] is the preceding Situation key,
             // line[1] is the following Situation key, and line[2] is the
             // choice text
             if (line.length == 3) {
-            //Reaches 
+                // Reaches
                 Events.situationList.get(precedingKey).addChoice(i);
                 masterList.add(new Choice(text, followingKey));
             }
@@ -87,25 +86,33 @@ public class Decisions {
                 Events.situationList.get(precedingKey).addChoice(i);
                 masterList.add(new Choice(text, followingKey, itemKey));
 
-                
             }
         }
 
         new Decisions(masterList);
         reader.close();
     }
-    
+
+    /**
+     * To retrieve a Choice from the choiceList by its integer key
+     * 
+     * @return Choice at index i
+     */
+    public static Choice getChoiceFromFullList(int i) {
+
+        return choiceList.get(i);
+    }
+
     /**
      * Puts a new decision object into the decisions LinkedHashMap using
-     * its key 
+     * its key
+     * 
      * @param choice Choice to append to the LinkedHashMap of Choice objects
      * @return The previous Choice value if key existed, null if a new key
      */
-    public static void addChoice(Choice newChoice)
-    {
+    public static void addChoice(Choice newChoice) {
         choiceList.add(newChoice);
     }
-
 
     /**
      * Choice subclass stores all the data members of the
@@ -122,8 +129,7 @@ public class Decisions {
         /**
          * Constructor
          */
-        public Choice (String text, int nextSituationKey, int itemKey)
-        {
+        public Choice(String text, int nextSituationKey, int itemKey) {
             this.text = text;
             this.nextSituationKey = nextSituationKey;
             this.itemKey = itemKey;
@@ -132,8 +138,7 @@ public class Decisions {
         /**
          * Constructor
          */
-        public Choice (String text, int nextSituationKey)
-        {
+        public Choice(String text, int nextSituationKey) {
             this.text = text;
             this.nextSituationKey = nextSituationKey;
             this.itemKey = -1;
@@ -142,16 +147,14 @@ public class Decisions {
         /**
          * @return Choice text
          */
-        public String getText( )
-        {
+        public String getText() {
             return this.text;
         }
 
         /**
          * @return next Situation
          */
-        public int getNextSituation( )
-        {
+        public int getNextSituation() {
             return this.nextSituationKey;
         }
 
@@ -159,8 +162,7 @@ public class Decisions {
          * @param newText
          * @return the original text
          */
-        public String setText(String newText)
-        {
+        public String setText(String newText) {
             String oldText = this.text;
             this.text = newText;
 
@@ -170,8 +172,7 @@ public class Decisions {
         /**
          * @param null
          */
-        public int setNextSituation(int newSituationKey)
-        {
+        public int setNextSituation(int newSituationKey) {
             int oldSituation = this.nextSituationKey;
             this.nextSituationKey = newSituationKey;
 
@@ -181,8 +182,7 @@ public class Decisions {
         /**
          * @param null
          */
-        public int setItemCondition(int newItemKey)
-        {
+        public int setItemCondition(int newItemKey) {
             int oldItemKey = this.itemKey;
             this.itemKey = newItemKey;
 

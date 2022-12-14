@@ -44,12 +44,13 @@ public class Events {
 
         else {
 
-            numSituations = Integer.parseInt(line[1], 10);
+            int numItems = Integer.parseInt(line[0]); // if 3 params, then numItems is line[0]. Not a necessary var but more clear
+            numSituations = Integer.parseInt(line[1], 10); // if there's 3 params, then numSituations is the line[1]
 
             // we want to advance the reader ahead an amount of lines equal
             // to the Items so that it's sitting on the line just before the
             // first Situation
-            for (int i = 0; i < Integer.parseInt(line[0]); i++) {
+            for (int i = 0; i < numItems; i++) {
 
                 reader.readLine();
             }
@@ -62,7 +63,7 @@ public class Events {
             // this line contains the prompt in line[0]
             line = reader.readLine().trim().split("~");
 
-            if (line.length == 1) { 
+            if (line.length == 1) {
                 // if line was of only length 1, then we know it was only the prompt
                 // on that line. You can't have a situation without a prompt EVER.
                 masterList.add(new Situation(line[0]));
@@ -83,12 +84,22 @@ public class Events {
 
             else { // it had 3 entries, a prompt, an item key, and an image name
 
-                masterList.add(new Situation(line[0], Integer.parseInt(line[1], 10), line[2])); // if it wasn't 
+                masterList.add(new Situation(line[0], Integer.parseInt(line[1], 10), line[2])); // if it wasn't
             }
         }
 
         new Events(masterList);
         reader.close();
+    }
+
+    /**
+     * To retrieve an item from the fullItemList by its integer key
+     * 
+     * @return Item at index i
+     */
+    public static Situation getSituationFromFullList(int i) {
+
+        return situationList.get(i);
     }
 
     /**
@@ -110,7 +121,6 @@ public class Events {
         private int itemKey; // if you land on the item, you get this IFF hasItem is true
         private String imageName;
 
-
         public Situation(String prompt, int itemKey, String imageName) {
 
             this.prompt = prompt;
@@ -127,7 +137,6 @@ public class Events {
             this.itemKey = itemKey;
             this.imageName = "";
         }
-
 
         public Situation(String prompt, String imageName) {
 
@@ -171,12 +180,12 @@ public class Events {
         }
 
         /**
-        *
-        * @param choice
-        */
-        public void addChoice(int choiceKey){
+         *
+         * @param choice
+         */
+        public void addChoice(int choiceKey) {
 
-        this.choices.add(choiceKey);
+            this.choices.add(choiceKey);
         }
 
         // may not actually be relevant

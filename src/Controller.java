@@ -1,54 +1,68 @@
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Controller {
 
-    public static String[] testArray = new String[] { "Hi there", "Testinggg", "Fun Times", "Last one" };
+    // for(Integer it : Inventory.playerItemlist)
+    // System.out.println(Inventory.getItemFromFullList(it).getDescription());
+    // //Gets the item discription from the
+
+    public static Events.Situation currentSituation;
+    public static Decisions.Choice choice0;
+    public static Decisions.Choice choice1;
+    public static Decisions.Choice choice2;
+    public static Decisions.Choice choice3;
 
     public static void start() {
-        
+        currentSituation = Events.getSituationFromFullList(0);
+        String input = JOptionPane.showInputDialog("Please enter your name:");
+        if (!input.equals("")) {
+            GUI.characterName.setText(input);
+            setImage(currentSituation.getImage());
+
+        }
+        GUI.start.setEnabled(false);
+        GUI.prompt.setText(Events.getSituationFromFullList(0).getPrompt());
+        choiceSet(Events.getSituationFromFullList(0));
+
     }
 
     public static void action1() {
         GUI.button1.setEnabled(false);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        testSet(testArray);
+        controlFunction(choice0);
         GUI.button1.setEnabled(true);
     }
 
     public static void action2() {
-
+        GUI.button2.setEnabled(false);
+        controlFunction(choice1);
+        GUI.button2.setEnabled(true);
     }
 
     public static void action3() {
-
+        GUI.button3.setEnabled(false);
+        controlFunction(choice3);
+        GUI.button3.setEnabled(true);
     }
 
     public static void action4() {
-
+        GUI.button4.setEnabled(false);
+        controlFunction(choice3);
+        GUI.button4.setEnabled(true);
     }
 
-    public static void controlFunction(int x){
+    public static void controlFunction(Decisions.Choice choice) {
+        currentSituation = Events.getSituationFromFullList(choice.getNextSituation());
+        if (currentSituation.hasItem()) {
 
-    }
+            Inventory.addPlayerItem(currentSituation.getItem());
+            System.out.println(currentSituation.getItem());
 
-
-
-
-
-    public static void dispSet(String text) {
-        GUI.prompt.setText(text);
-    }
-
-    public static void testSet(String[] test) {
-        for (int i = 0; i < test.length; i++) {
-            set(i, test[i]);
         }
+
+        GUI.prompt.setText(currentSituation.getPrompt());
+        choiceSet(currentSituation);
     }
 
     /**
@@ -59,20 +73,42 @@ public class Controller {
      */
     public static void choiceSet(Events.Situation sit) {
 
-        for (int i = 0; i < sit.getChoices().size(); i++) {
-            set(i, Decisions.choiceList.get(sit.getChoices().get(i)).getText());
+        for (int i = 0; i < 4; i++) {
+            
+            if (i < sit.getChoices().size() && Decisions.choiceList.get(sit.getChoices().get(i)).isAvailable()) {
+
+                set(i, Decisions.choiceList.get(sit.getChoices().get(i)).getText(),
+                        Decisions.choiceList.get(sit.getChoices().get(i)));
+            } else {
+                // we don't want to try accessing out of bounds in the getChoices()
+                // ArrayList so we hand it an empty String instead
+                set(i, "", null);
+            }
         }
     }
 
-    public static void set(int i, String text) {
-        if (i == 0) {
-            GUI.label1.setText(text);
-        } else if (i == 1) {
-            GUI.label2.setText(text);
-        } else if (i == 2) {
-            GUI.label3.setText(text);
-        } else if (i == 3) {
-            GUI.label4.setText(text);
+    public static void set(int i, String text, Decisions.Choice choice) {
+
+        switch (i) {
+            case 0:
+                GUI.label1.setText(text);
+                choice0 = choice;
+                break;
+            case 1:
+                GUI.label2.setText(text);
+                choice1 = choice;
+                break;
+            case 2:
+                GUI.label3.setText(text);
+                choice2 = choice;
+                break;
+            case 3:
+                GUI.label4.setText(text);
+                choice3 = choice;
+               
+                break;
+            default:
+                break;
         }
     }
 

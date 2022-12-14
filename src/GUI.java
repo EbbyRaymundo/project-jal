@@ -38,6 +38,8 @@ public class GUI extends JFrame implements ActionListener {
     public static JButton button3;
     public static JButton button4;
 
+    private static int promptTextSize = 40;
+    private static int labelTextSize = 30;
     private static Color backgroundDarkGray = new Color(0x222327);
     private static Color borderGray = new Color(0x475059);
     private static Color textTan = new Color(0x8c8477);
@@ -104,7 +106,7 @@ public class GUI extends JFrame implements ActionListener {
         mainPanel.add(hook);
 
         prompt = new JTextArea(); // Prompt Panel with Scrollbar
-        prompt.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
+        prompt.setFont(new Font("Serif", Font.ROMAN_BASELINE, promptTextSize));
         prompt.setLineWrap(true);
         prompt.setWrapStyleWord(true);
         prompt.setEditable(false);
@@ -126,7 +128,7 @@ public class GUI extends JFrame implements ActionListener {
         label1 = new JTextArea(); // First Choice Label
         label1.setEditable(false);
         label1.setBounds(25, 500, 250, 200);
-        label1.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
+        label1.setFont(new Font("Serif", Font.ROMAN_BASELINE, labelTextSize));
         label1.setWrapStyleWord(true);
         label1.setLineWrap(true);
         label1.setBackground(null);
@@ -138,7 +140,7 @@ public class GUI extends JFrame implements ActionListener {
         label2 = new JTextArea(); // Second Choice Label
         label2.setEditable(false);
         label2.setBounds(325, 500, 250, 200);
-        label2.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
+        label2.setFont(new Font("Serif", Font.ROMAN_BASELINE, labelTextSize));
         label2.setWrapStyleWord(true);
         label2.setLineWrap(true);
         label2.setBackground(null);
@@ -150,7 +152,7 @@ public class GUI extends JFrame implements ActionListener {
         label3 = new JTextArea(); // Third Choice Label
         label3.setEditable(false);
         label3.setBounds(625, 500, 250, 200);
-        label3.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
+        label3.setFont(new Font("Serif", Font.ROMAN_BASELINE, labelTextSize));
         label3.setWrapStyleWord(true);
         label3.setLineWrap(true);
         label3.setBackground(null);
@@ -162,7 +164,7 @@ public class GUI extends JFrame implements ActionListener {
         label4 = new JTextArea(); // Fourth Choice Label
         label4.setEditable(false);
         label4.setBounds(925, 500, 250, 200);
-        label4.setFont(new Font("Serif", Font.ROMAN_BASELINE, 22));
+        label4.setFont(new Font("Serif", Font.ROMAN_BASELINE, labelTextSize));
         label4.setWrapStyleWord(true);
         label4.setLineWrap(true);
         label4.setBackground(null);
@@ -238,25 +240,28 @@ public class GUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button1) { // CHOICE 1
-            Controller.action1();
+            if (Controller.choice0 != null) {
+                Controller.action1();
+            }
         }
         if (e.getSource() == button2) { // CHOICE 2
-            Controller.action2();
+            if (Controller.choice1 != null) {
+                Controller.action2();
+            }
         }
         if (e.getSource() == button3) { // CHOICE 3
-            Controller.action3();
+            if (Controller.choice2 != null) {
+                Controller.action3();
+            }
         }
         if (e.getSource() == button4) { // CHOICE 4
-            Controller.action4();
+            if (Controller.choice3 != null) {
+                Controller.action4();
+            }
         }
 
         if (e.getSource() == start) { // START
-            String input = JOptionPane.showInputDialog("Please enter your name:");
-            if (!input.equals("")) {
-                characterName.setText(input);
-                Controller.setImage("me_when_java.jpg");
-
-            }
+            Controller.start();
         }
 
         if (e.getSource() == cancel) { // EXIT

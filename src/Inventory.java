@@ -23,7 +23,7 @@ public class Inventory {
     public Inventory(ArrayList<Item> allItems) {
 
         fullItemList = allItems;
-        
+
     }
 
     /**
@@ -47,23 +47,24 @@ public class Inventory {
         // sitting on first line with number of items, situations, and choices
         String[] line = reader.readLine().trim().split("~");
 
-        new Inventory();
-
         if (line.length == 2) { // if there's only 2 params, then there are no items in the game
+            new Inventory();
             reader.close();
             return;
         }
 
         numItems = Integer.parseInt(line[0], 10); // line[0] must be the number of items if we reached this point
-        
+        ArrayList<Item> masterList = new ArrayList<Item>(numItems);
+
+
         for (int i = 0; i < numItems; i++) {
+
             // this line contains the item name in line[0] and the item
             // description in line[1]
             line = reader.readLine().trim().split("~");
-            
-            Inventory.addItem(new Item(line[0], line[1]));
+            masterList.add(new Item(line[0], line[1]));
         }
-
+        new Inventory(masterList);
         reader.close();
     }
 
@@ -86,7 +87,6 @@ public class Inventory {
 
         return playerItemList;
     }
-
 
     /**
      * @param item Item object
