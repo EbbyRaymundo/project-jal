@@ -49,9 +49,9 @@ public class Start {
 		 * System.out.println(myArray[1]);
 		 */
 		try {
-			Inventory.readSlimeFile("src//master.slime");
-			Events.readSlimeFile("src//master.slime");
-			Decisions.readSlimeFile("src//master.slime");
+			Inventory.readSlimeFile("src/master.slime");
+			Events.readSlimeFile("src/master.slime");
+			Decisions.readSlimeFile("src/master.slime");
 		} catch (Exception e) {
 			// @TODO Auto-generated catch block
 			e.printStackTrace();

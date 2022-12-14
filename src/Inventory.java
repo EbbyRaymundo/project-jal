@@ -5,14 +5,16 @@ import java.io.BufferedReader;
 public class Inventory {
 
     // We could use a linked list instead here if we were to be more readily
-    // removing items but at the moment we are using an array list. We currently
+    // removing items but at the moment we are using an ArrayList. We currently
     // do not plan to remove items in our implementation
     public static ArrayList<Item> fullItemList;
     public static ArrayList<Integer> playerItemList;
 
     /**
      * Default constructor to create an empty player Inventory
-     * and an empty Item master list.
+     * and an empty Item master list. Helpful for handcrafting them
+     * or something but mostly useful if you want to run a game
+     * that doesn't use any items.
      */
     public Inventory() {
 
@@ -20,6 +22,14 @@ public class Inventory {
         playerItemList = new ArrayList<Integer>();
     }
 
+    /**
+     * Constructor that populates the fullItemList with a given
+     * ArrayList of Item objects, typically constructed by
+     * the readSlimeFile( ) method. Sets an empty player
+     * fullItemList with no starting Items.
+     * 
+     * @param allItems pre-populated ArrayList of every single Item within the game.
+     */
     public Inventory(ArrayList<Item> allItems) {
 
         fullItemList = allItems;
@@ -28,11 +38,13 @@ public class Inventory {
     }
 
     /**
-     * Constructor that uses the provided ArrayList of items
-     * to start the player with. Must provide the corresponding
-     * fullItemList to know what they correspond to
+     * Constructor that populates the fullItemList with a given
+     * ArrayList of Item objects, typically constructed by
+     * the readSlimeFile( ) method. Sets the playerItemList
+     * to have starting Items as well.
      * 
-     * @param items List of Item objects
+     * @param allItems pre-populated ArrayList of every single Item within the game
+     * @param startingItems pre-populated ArrayList of starting Items for the player
      */
     public Inventory(ArrayList<Item> allItems, ArrayList<Integer> startingItems) {
 
@@ -40,6 +52,14 @@ public class Inventory {
         playerItemList = startingItems;
     }
 
+    /**
+     * Static factory method that reads a file in the .slime format
+     * (a proprietary file format for Jal) to construct and populate
+     * an ArrayList of every Item within the game.
+     * 
+     * @param filePath to the .slime file
+     * @throws Exception from BufferedReader
+     */
     public static void readSlimeFile(String filePath) throws Exception {
 
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -57,7 +77,6 @@ public class Inventory {
         numItems = Integer.parseInt(line[0], 10); // line[0] must be the number of items if we reached this point
         ArrayList<Item> masterList = new ArrayList<Item>(numItems);
 
-
         for (int i = 0; i < numItems; i++) {
 
             // this line contains the item name in line[0] and the item
@@ -65,24 +84,22 @@ public class Inventory {
             line = reader.readLine().trim().split("~");
             masterList.add(new Item(line[0], line[1]));
         }
+        
         new Inventory(masterList);
         reader.close();
     }
 
     /**
-     * To retrieve an item from the fullItemList by its integer key
-     * 
-     * @return Item at index i
+     * @param itemKey integer key within the master list fullItemList
+     * @return Item object with integer key itemKey
      */
-    public static Item getItemFromFullList(int i) {
+    public static Item getItemFromFullList(int itemKey) {
 
-        return fullItemList.get(i);
+        return fullItemList.get(itemKey);
     }
 
     /**
-     * Read the method
-     * 
-     * @return The current Inventory
+     * @return The current playerItemList that contains the integer keys of the Items they currently possess
      */
     public static ArrayList<Integer> getPlayerItems() {
 
@@ -90,23 +107,28 @@ public class Inventory {
     }
 
     /**
-     * @param item Item object
+     * @param newItem Item to append to the master list of Item objects fullItemList
      */
     public static void addItem(Item newItem) {
 
         fullItemList.add(newItem);
     }
 
+    /**
+     * @param itemKey integer key of the Item in fullItemList to append to the player's current inventory playerItemList
+     */
     public static void addPlayerItem(int itemKey) {
 
         playerItemList.add(itemKey);
     }
 
     /**
-     * Create a nested Item class here. Going to rework so that
-     * you should only be managing and adding items through
-     * calls to the inventory class. This makes sense in my head
-     * so this is what we're going with.
+     * The Item object is referenced by
+     * the Inventory fullItemList using an assigned integer
+     * key so that the Choice can be accessed directly using
+     * that integer key.
+     * Stores data members for the Item's name and
+     * description
      */
     public static class Item {
 
@@ -114,9 +136,15 @@ public class Inventory {
         private String description;
 
         /**
-         * Constructor
+         * Constructor that is the only one available since you are
+         * not allowed to make an Item without a name and description,
+         * and has no optional data members.
+         *
+         * @param name of the Item
+         * @param description of the Item
          */
         public Item(String name, String description) {
+
             this.name = name;
             this.description = description;
         }
@@ -125,6 +153,7 @@ public class Inventory {
          * @return Item name
          */
         public String getName() {
+
             return this.name;
         }
 
@@ -132,13 +161,16 @@ public class Inventory {
          * @return Item description
          */
         public String getDescription() {
+
             return this.description;
         }
 
         /**
-         * @param newName
+         * @param newName to replace the original name with
+         * @return the original name
          */
         public String setName(String newName) {
+
             String oldName = this.name;
             this.name = newName;
 
@@ -146,9 +178,11 @@ public class Inventory {
         }
 
         /**
-         * @param null
+         * @param newDescription to replace the original description with
+         * @return the original description
          */
         public String setDescription(String newDescription) {
+
             String oldDescription = this.description;
             this.description = newDescription;
 

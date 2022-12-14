@@ -42,7 +42,7 @@ public class Controller {
 
     public static void action3() {
         GUI.button3.setEnabled(false);
-        controlFunction(choice3);
+        controlFunction(choice2);
         GUI.button3.setEnabled(true);
     }
 
@@ -54,10 +54,17 @@ public class Controller {
 
     public static void controlFunction(Decisions.Choice choice) {
         currentSituation = Events.getSituationFromFullList(choice.getNextSituation());
+        setImage(currentSituation.getImage());
         if (currentSituation.hasItem()) {
 
             Inventory.addPlayerItem(currentSituation.getItem());
-            System.out.println(currentSituation.getItem());
+            //This next very large part sets the Inventory to include the newly aquired item
+            if(GUI.invArea.getText().equals("")){
+            GUI.invArea.setText(Inventory.getItemFromFullList(currentSituation.getItem()).getName() + " " + Inventory.getItemFromFullList(currentSituation.getItem()).getDescription());
+            }
+            else{
+                GUI.invArea.setText(GUI.invArea.getText() + "\n\n" + Inventory.getItemFromFullList(currentSituation.getItem()).getName() + " " + Inventory.getItemFromFullList(currentSituation.getItem()).getDescription());
+            }
 
         }
 
@@ -113,12 +120,16 @@ public class Controller {
     }
 
     public static void setImage(String imageName) {
-        if (!imageName.equals("")) {
+        if (currentSituation.hasImage()) {
             Image image = new ImageIcon("src//photos//" + imageName).getImage();
             Image scaledImage = image.getScaledInstance((GUI.depth.getWidth() - 10), (GUI.depth.getHeight() - 10),
                     Image.SCALE_SMOOTH);
             GUI.icon.setIcon(new ImageIcon(scaledImage));
             GUI.icon.setBounds(0, 0, 350, 400);
+            GUI.depth.add(GUI.icon);
+        }
+        else{
+            GUI.icon.setIcon(null);
             GUI.depth.add(GUI.icon);
         }
     }

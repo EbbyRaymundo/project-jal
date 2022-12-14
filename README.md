@@ -1,11 +1,11 @@
 # Jal
 
 ## TODO
-- Need to add a method to keep track of how many Choice keys are in a Situation's int[] array, and keep the rest filled with -1's
-    - This is not actually needed because as you fetch the Choice objects from the choiceList, you can check the .isAvailable()
-      method of the Choice object to decide if you need to print it. This eliminates the need to update a Situation's nextChoiceList
-      whenever the Item has now been acquired that would unlock a Choice.
-
+- In the static factory methods of Inventory, Events, and Decisions, we should use the numItems, numSituations, and numChoices to set the intial capacities of the ArrayLists so that we never need to resize. Adds efficiency but will make no changes to the model's logic.
+- Add in logic to addItem() within the Situation class so that you can't give the player duplicates of items.
+  - We reconsidered this since it would fit within the artistic vision that the player could jump back to the beginning of the game 
+    and load up their inventory with duplicates.
+- Enforce the Situation's choice instance variable to be of max size 4.
 ## Preface
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 

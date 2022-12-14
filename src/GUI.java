@@ -23,8 +23,12 @@ public class GUI extends JFrame implements ActionListener {
     public static JLabel characterName;
     private static JLabel hook;
 
+    public static JTextArea invArea;
     public static JTextArea prompt;
+    private static JScrollPane scrollingInv;
+    private static JScrollBar invBar;
     private static JScrollPane scrollingPrompt;
+    private static JScrollBar promptBar;
 
     public static JTextArea label1;
     public static JTextArea label2;
@@ -40,8 +44,8 @@ public class GUI extends JFrame implements ActionListener {
 
     private static int promptTextSize = 40;
     private static int labelTextSize = 30;
+    private static int invTextSize = 30;
     private static Color backgroundDarkGray = new Color(0x222327);
-    private static Color borderGray = new Color(0x475059);
     private static Color textTan = new Color(0x8c8477);
     private static Color brickRed = new Color(0xa54b29);
     private static Color myYellow = new Color(0xf3be22);
@@ -64,7 +68,7 @@ public class GUI extends JFrame implements ActionListener {
         add(mainPanel);
 
         rectangle = new JPanel(); // Rectangle for Inventory
-        rectangle.setBounds(75, 780, 1050, 60);
+        rectangle.setBounds(75, 760, 1050, 90);
         rectangle.setBackground(null);
         rectangle.setForeground(myYellow);
         Border redLine = BorderFactory.createLineBorder(brickRed);// title stuff
@@ -74,6 +78,25 @@ public class GUI extends JFrame implements ActionListener {
 
         mainPanel.add(rectangle);
 
+        //Inventory Area where text will be updated to add to the Inventory, gets wrapped with scrollbar
+        invArea = new JTextArea();
+        invArea.setFont(new Font("Serif", Font.ROMAN_BASELINE, invTextSize));
+        invArea.setBackground(backgroundDarkGray);
+        invArea.setForeground(myYellow);
+        invArea.setEditable(false);
+        invArea.setText("");
+        invArea.setLineWrap(true);
+        invArea.setWrapStyleWord(true);
+        scrollingInv = new JScrollPane(invArea);
+        scrollingInv.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollingInv.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        invBar = scrollingInv.getVerticalScrollBar();
+        invBar.setBackground(choiceGreen);
+        
+        scrollingInv.setBounds(120, 775, 1000, 70);
+
+        mainPanel.add(scrollingInv);
+    
         depth = new JPanel(); // Panel for Photos
         depth.setBounds(830, 50, 350, 400);
         depth.setBackground(darkTan);
@@ -83,15 +106,9 @@ public class GUI extends JFrame implements ActionListener {
 
         icon = new JLabel(); // Image for Photo Panel
 
-        /*
-         * inv = new JLabel("Inventory");
-         * inv.setBounds(600,800,100,50);
-         * inv.setForeground(myYellow);
-         * mainPanel.add(inv);
-         */
 
         characterName = new JLabel(); // Character Name
-        characterName.setBounds(5, 5, 300, 30);
+        characterName.setBounds(30, 5, 300, 30);
         characterName.setFont(new Font("Serif", Font.BOLD, 24));
         characterName.setForeground(myYellow);
 
@@ -118,8 +135,8 @@ public class GUI extends JFrame implements ActionListener {
         scrollingPrompt.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollingPrompt.setBounds(5, 40, 800, 400); // we want the panel to be wider than it is tall for reading
         scrollingPrompt.setBorder(new LineBorder(brickRed, 2));
-        JScrollBar scrollBar = scrollingPrompt.getVerticalScrollBar();
-        scrollBar.setBackground(darkGreen);
+        promptBar = scrollingPrompt.getVerticalScrollBar();
+        promptBar.setBackground(darkGreen);
 
         mainPanel.add(scrollingPrompt);
 

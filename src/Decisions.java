@@ -2,24 +2,51 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+/**
+ * The Decisions class contains the master list of Choice objects
+ * and the nested Choice class.
+ * Each Choice object within the choiceList master list of Decisions
+ * has an associated integer key which is used to directly access
+ * that Choice within choiceList.
+ * See the nested Choice class below to see how it interacts with
+ * the program.
+ */
 public class Decisions {
-    
+
     public static ArrayList<Choice> choiceList; // master list of Choice objects
 
     /**
-     * Event constructor that creates an empty Decisons master list
+     * Constructor that creates an empty Decisions master list
      * that contains no Choice objects.
+     * This constructor would only ever be useful if you want to
+     * craft your list of Choice objects by hand and add them
+     * into the empty choiceList.
      */
     public Decisions() {
 
         choiceList = new ArrayList<Choice>();
     }
 
+    /**
+     * Constructor that populates the choiceList with a given
+     * ArrayList of Choice objects, typically constructed by
+     * the readSlimeFile( ) method.
+     * 
+     * @param newChoiceList pre-populated ArrayList of every single Choice within the game.
+     */
     public Decisions(ArrayList<Choice> newChoiceList) {
 
         choiceList = newChoiceList;
     }
 
+    /**
+     * Static factory method that reads a file in the .slime format
+     * (a proprietary file format for Jal) to construct and populate
+     * an ArrayList of every Choice within the game.
+     * 
+     * @param filePath to the .slime file
+     * @throws Exception from BufferedReader
+     */
     public static void readSlimeFile(String filePath) throws Exception {
 
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -38,27 +65,30 @@ public class Decisions {
         }
 
         else {
-
+            // we must have 3 params if we reach this point, and the game has item
+            // lines we need to skip over
+            int numItems = Integer.parseInt(line[0], 10);
             numSituations = Integer.parseInt(line[1], 10);
             numChoices = Integer.parseInt(line[2], 10);
 
             // we want to advance the reader ahead an amount of lines equal
             // to the Items so that it's sitting on the line just before the
             // first Situation
-            for (int i = 0; i < Integer.parseInt(line[0], 10); i++) {
+            for (int i = 0; i < numItems; i++) {
 
                 reader.readLine();
             }
         }
 
         // both cases (line.length == 2 and line.length == 3) need
-        // to do this step so we'll just do it outside the if statement
+        // to do this step where we skip the Situation lines
+        // so we'll just do it outside the previous if statement
         for (int i = 0; i < numSituations; i++) {
 
             reader.readLine();
         }
 
-        // we can now loop through all the choices in the file and construct
+        // we can now loop through all the Choice lines in the file and construct
         // our Choice objects
         for (int i = 0; i < numChoices; i++) {
 
@@ -89,35 +119,37 @@ public class Decisions {
             }
         }
 
-        new Decisions(masterList);
-        reader.close();
+        new Decisions(masterList); // throw that bad boy into the constructor
+        reader.close(); // coding kosher
     }
 
     /**
-     * To retrieve a Choice from the choiceList by its integer key
-     * 
-     * @return Choice at index i
+     * @param choiceKey integer key within the master list choiceList
+     * @return Choice object with integer key choiceKey
      */
-    public static Choice getChoiceFromFullList(int i) {
+    public static Choice getChoiceFromFullList(int choiceKey) {
 
-        return choiceList.get(i);
+        return choiceList.get(choiceKey);
     }
 
     /**
-     * Puts a new decision object into the decisions LinkedHashMap using
-     * its key
-     * 
-     * @param choice Choice to append to the LinkedHashMap of Choice objects
-     * @return The previous Choice value if key existed, null if a new key
+     * @param newChoice Choice to append to the master list of Choice objects
      */
     public static void addChoice(Choice newChoice) {
+
         choiceList.add(newChoice);
     }
 
     /**
-     * Choice subclass stores all the data members of the
-     * Choice object. The Choice object is referenced by
-     * the Decisions class LinkedHashMap.
+     * The Choice object is referenced by
+     * the Decisions choiceList using an assigned integer
+     * key so that the Choice can be accessed directly using
+     * that integer key.
+     * Stores data members for the Choice's text, the integer
+     * key of the next Situation within the situationList of
+     * Events, and the integer key of the
+     * Item the player must possess to be able to choose
+     * this Choice within the fullItemList of Inventory.
      */
     public static class Choice {
 
@@ -127,7 +159,8 @@ public class Decisions {
         private int itemKey;
 
         /**
-         * Constructor
+         * Constructor for when all 3 data fields are provided,
+         * meaning that this Choice has an Item condition.
          */
         public Choice(String text, int nextSituationKey, int itemKey) {
             this.text = text;
@@ -136,7 +169,8 @@ public class Decisions {
         }
 
         /**
-         * Constructor
+         * Constructor for when there's no Item condition
+         * for this Choice.
          */
         public Choice(String text, int nextSituationKey) {
             this.text = text;
@@ -145,22 +179,27 @@ public class Decisions {
         }
 
         /**
-         * @return Choice text
+         * @return Choice object's String text
          */
         public String getText() {
+
             return this.text;
         }
 
         /**
-         * @return next Situation
+         * integer key that references the next
+         * Situation within the situationList of Events
+         * 
+         * @return next Situation integer key
          */
         public int getNextSituation() {
+
             return this.nextSituationKey;
         }
 
         /**
          * @param newText
-         * @return the original text
+         * @return the original Choice String text
          */
         public String setText(String newText) {
             String oldText = this.text;
@@ -170,7 +209,11 @@ public class Decisions {
         }
 
         /**
-         * @param null
+         * Manually sets the next Situation integer
+         * key that references the Situation in the
+         * situationList of Events
+         * 
+         * @param newSituationKey
          */
         public int setNextSituation(int newSituationKey) {
             int oldSituation = this.nextSituationKey;
@@ -180,7 +223,14 @@ public class Decisions {
         }
 
         /**
-         * @param null
+         * Manually sets the Item condition integer key
+         * that references the corresponding Item object
+         * within the fullItemList of Inventory
+         * that this Choice requires for the player to
+         * be able to select this Choice.
+         * 
+         * @param newItemKey integer key of the new Item condition
+         * @return the old integer key of the Item condition
          */
         public int setItemCondition(int newItemKey) {
             int oldItemKey = this.itemKey;
@@ -191,8 +241,10 @@ public class Decisions {
 
         /**
          * This method checks if the Choice has a conditonal Item to
-         * be able to select it (-1) or if the itemKey is within the
-         * player's items.
+         * be able to select it (itemKey == -1 if no condition) or
+         * if the itemKey is within the playerItemList in Inventory.
+         * 
+         * @return true if the player is allowed to select this Choice, false otherwise
          */
         public boolean isAvailable() {
 
