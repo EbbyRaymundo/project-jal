@@ -58,12 +58,15 @@ public class Controller {
         if (currentSituation.hasItem()) {
 
             Inventory.addPlayerItem(currentSituation.getItem());
-            //This next very large part sets the Inventory to include the newly aquired item
-            if(GUI.invArea.getText().equals("")){
-            GUI.invArea.setText(Inventory.getItemFromFullList(currentSituation.getItem()).getName() + " " + Inventory.getItemFromFullList(currentSituation.getItem()).getDescription());
-            }
-            else{
-                GUI.invArea.setText(GUI.invArea.getText() + "\n\n" + Inventory.getItemFromFullList(currentSituation.getItem()).getName() + " " + Inventory.getItemFromFullList(currentSituation.getItem()).getDescription());
+            // This next very large part sets the Inventory to include the newly aquired
+            // item
+            if (GUI.invArea.getText().equals("")) {
+                GUI.invArea.setText(Inventory.getItemFromFullList(currentSituation.getItem()).getName() + " "
+                        + Inventory.getItemFromFullList(currentSituation.getItem()).getDescription());
+            } else {
+                GUI.invArea.setText(GUI.invArea.getText() + "\n\n"
+                        + Inventory.getItemFromFullList(currentSituation.getItem()).getName() + " "
+                        + Inventory.getItemFromFullList(currentSituation.getItem()).getDescription());
             }
 
         }
@@ -112,7 +115,7 @@ public class Controller {
             case 3:
                 GUI.label4.setText(text);
                 choice3 = choice;
-               
+
                 break;
             default:
                 break;
@@ -127,8 +130,7 @@ public class Controller {
             GUI.icon.setIcon(new ImageIcon(scaledImage));
             GUI.icon.setBounds(0, 0, 350, 400);
             GUI.depth.add(GUI.icon);
-        }
-        else{
+        } else {
             GUI.icon.setIcon(null);
             GUI.depth.add(GUI.icon);
         }

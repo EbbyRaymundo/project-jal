@@ -78,7 +78,8 @@ public class GUI extends JFrame implements ActionListener {
 
         mainPanel.add(rectangle);
 
-        //Inventory Area where text will be updated to add to the Inventory, gets wrapped with scrollbar
+        // Inventory Area where text will be updated to add to the Inventory, gets
+        // wrapped with scrollbar
         invArea = new JTextArea();
         invArea.setFont(new Font("Serif", Font.ROMAN_BASELINE, invTextSize));
         invArea.setBackground(backgroundDarkGray);
@@ -92,11 +93,11 @@ public class GUI extends JFrame implements ActionListener {
         scrollingInv.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         invBar = scrollingInv.getVerticalScrollBar();
         invBar.setBackground(choiceGreen);
-        
+
         scrollingInv.setBounds(120, 775, 1000, 70);
 
         mainPanel.add(scrollingInv);
-    
+
         depth = new JPanel(); // Panel for Photos
         depth.setBounds(830, 50, 350, 400);
         depth.setBackground(darkTan);
@@ -105,7 +106,6 @@ public class GUI extends JFrame implements ActionListener {
         mainPanel.add(depth);
 
         icon = new JLabel(); // Image for Photo Panel
-
 
         characterName = new JLabel(); // Character Name
         characterName.setBounds(30, 5, 300, 30);
@@ -210,7 +210,6 @@ public class GUI extends JFrame implements ActionListener {
         mainPanel.add(cancel);
 
         // Adds the buttons for the choices to the GUI
-        //
         button1 = new JButton("Select");
         button1.setBounds(25, 700, 250, 50);
         button1.setBackground(choiceGreen);

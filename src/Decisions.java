@@ -50,7 +50,6 @@ public class Decisions {
     public static void readSlimeFile(String filePath) throws Exception {
 
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        ArrayList<Choice> masterList = new ArrayList<Choice>();
         int numSituations;
         int numChoices;
 
@@ -87,6 +86,9 @@ public class Decisions {
 
             reader.readLine();
         }
+
+        ArrayList<Choice> masterList = new ArrayList<Choice>(numChoices); // we know what the max capacity MUST be
+
 
         // we can now loop through all the Choice lines in the file and construct
         // our Choice objects

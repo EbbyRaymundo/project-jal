@@ -46,7 +46,6 @@ public class Events {
     public static void readSlimeFile(String filePath) throws Exception {
 
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        ArrayList<Situation> masterList = new ArrayList<Situation>();
         int numSituations;
 
         // sitting on first line with number of items, situations, and choices
@@ -71,6 +70,9 @@ public class Events {
                 reader.readLine();
             }
         }
+
+        ArrayList<Situation> masterList = new ArrayList<Situation>(numSituations); // we know what the max capacity MUST be
+
 
         // we can now loop through all the situations in the file and construct
         // our Situation objects

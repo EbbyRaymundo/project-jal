@@ -1,6 +1,10 @@
 
 /**
- * Class to manage and the player
+ * Class to manage the Player. At the moment, this
+ * class is not necessary to the model's logic but
+ * if anyone ever wanted to expand upon Jal's engine,
+ * this could be easily done by adding data members
+ * to the player class.
  */
 
 public class Player {
@@ -8,7 +12,9 @@ public class Player {
     private static String name;
 
     /**
-     * Constructor
+     * Constructor for when you create a Player object.
+     *
+     * @param playerName
      */
     public Player(String playerName)
     {
@@ -16,7 +22,7 @@ public class Player {
     }
 
     /**
-     * @return player name
+     * @return the player name
      */
     public String getName()
     {

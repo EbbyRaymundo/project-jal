@@ -84,7 +84,7 @@ public class Inventory {
             line = reader.readLine().trim().split("~");
             masterList.add(new Item(line[0], line[1]));
         }
-        
+
         new Inventory(masterList);
         reader.close();
     }
