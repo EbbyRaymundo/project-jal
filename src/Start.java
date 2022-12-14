@@ -58,11 +58,12 @@ public class Start {
 
 	public static void main(String[] args) {
 
-		
+		String slimeFile = args[0];
+
 		try {
-			Inventory.readSlimeFile("src/horror.slime");
-			Events.readSlimeFile("src/horror.slime");
-			Decisions.readSlimeFile("src/horror.slime");
+			Inventory.readSlimeFile(slimeFile);
+			Events.readSlimeFile(slimeFile);
+			Decisions.readSlimeFile(slimeFile);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
