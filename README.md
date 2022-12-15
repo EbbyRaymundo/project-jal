@@ -64,5 +64,15 @@ As a reminder:
 - Granted item keys and images are optional for a Situation.
 - A required item key is optional for a Choice.
 
+## Future features that can be added
+
+- In the future, we would like to add in an undo feature to place Situations in a stack, or some kind of save-state feature. Making it so certain key items could lock you out of an option would be a potential feature that one might want to add, but is not advised since it detracts from the player enjoyment of being able to interact with the entirety of your story.\
+- Add in multi-Item requirements to a Choice.
+- Make the player inventory a pop out that shows each item with its own little icon, name, and shows a description when you hover over it.
+- Add a .slime developer tool to automatically generate your .slime file based on how you mapped your story.
+- Add dynamic button allocation to the GUI so that a Situation can have more than 4 Choices.
+- Use a GUI library that isn't Swing.
+- Add in a log so the player can see the choices they've been taking.
+
 ## Credits
 Developed by Eberardo Raymundo and William Willis.
