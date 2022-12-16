@@ -4,7 +4,7 @@
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
 ## About Jal
-Jal is a text-based choose your own adventure that integrates a GUI for increased interactivity. Jal is designed as a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA), and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern. The model is fully independent of the view (GUI.java) and the controller (Controller.java). Due to the nature of the implementation, it is possible for the player to select an option that self-loops to where they currently are, and the player can take a decision path that leads them back to the same place.
+Jal is a text-based choose your own adventure game engine that integrates a GUI for increased interactivity. Jal is designed as a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA), and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern. The model is fully independent of the view (GUI.java) and the controller (Controller.java). Due to the nature of the implementation, it is possible for the player to select an option that self-loops to where they currently are, and the player can take a decision path that leads them back to the same place.
 
 ### Terminology
 | Term | Meaning |
