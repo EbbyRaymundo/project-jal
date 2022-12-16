@@ -3,6 +3,10 @@
 ## Preface
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
+## Running Jal
+After pulling this repository, you can compile Jal using "javac *.java"  within src/ on the command line.\
+To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder. Jal comes preloaded with an example game "master.slime", and a fleshed out example "horror.slime". Do not specify slimeballs/YourFileHere.slime since the program is aware that it will be within the slimeballs/ folder
+
 ## About Jal
 Jal is a text-based choose your own adventure game engine that integrates a GUI for increased interactivity. Jal is designed as a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA), and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern. The model is fully independent of the view (GUI.java) and the controller (Controller.java). Due to the nature of the implementation, it is possible for the player to select an option that self-loops to where they currently are, and the player can take a decision path that leads them back to the same place.
 
@@ -17,9 +21,20 @@ Jal is a text-based choose your own adventure game engine that integrates a GUI 
 ### Game flow
 The player starts in the first Situation, then has up to 4 Choices to choose from if they're available based on the player's current Items. Once a Choice is selected, the next next Situation that Choice leads to is loaded, grants the player an Item if it has one, then the Situation's Choices are loaded based on the player's current Items. This process is repeated until a terminal Situation is reached with no available Choices.
 
-## Running Jal
-To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder.
+### Implementation
 
+There are 3 master lists that store every Item, Situation, and Choice. Each Item, Situation, and Choice has an associated integer key so that it can be directly accessed from this master list. To demonstrate using master.slime:
+
+| fullItemList | situationList | choiceList |
+| ------------ | ------------- | ---------- |
+| \[0\] phone | \[0\] You wake up | \[0\] Stay in bed |
+| | \[1\] Still in bed | \[1\] 5 more minutes |
+| | \[2\] Long and healthy life | \[2\] Eat your veggies |
+| | \[3\] Forgot to text mom | \[3\] Eat your cream of wheat |
+| | \[4\] Waste your life | \[4\] Pick up your phone |
+| | | \[5\] Give up your tech addiction |
+| | | \[6\] Check your phone again |
+ 
 ## Developing for Jal
 Jal's story flow is not hard-coded. You can create your own game with your own rules following the .slime format:
 

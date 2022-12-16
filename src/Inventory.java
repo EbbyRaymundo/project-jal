@@ -62,6 +62,7 @@ public class Inventory {
      */
     public static void readSlimeFile(String filePath) throws Exception {
 
+        filePath = "slimeballs/" + filePath;
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         int numItems;
 
