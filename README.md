@@ -8,7 +8,7 @@ Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to
 
 ## Running Jal
 After pulling this repository, you can compile Jal using "javac *.java"  within src/ on the command line.\
-To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder. Jal comes preloaded with an example game "master.slime", and a fleshed out example "horror.slime". Do not specify slimeballs/YourFileHere.slime since the program is aware that it will be within the slimeballs/ folder
+To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder. Jal comes preloaded with a few slimeballs, an example game "master.slime", and a fleshed out example "horror.slime". Do not specify slimeballs/YourFileHere.slime since the program is aware that it will be within the slimeballs/ folder
 
 ## About Jal
 Jal is a text-based choose your own adventure game engine that integrates a GUI for increased interactivity. Jal is designed as a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA), and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern. The model is fully independent of the view (GUI.java) and the controller (Controller.java). Due to the nature of the implementation, it is possible for the player to select an option that self-loops to where they currently are, and the player can take a decision path that leads them back to the same place.
@@ -37,6 +37,10 @@ There are 3 master lists that store every Item, Situation, and Choice. Each Item
 | | \[4\] Waste your life | \[4\] Pick up your phone |
 | | | \[5\] Give up your tech addiction |
 | | | \[6\] Check your phone again |
+
+The Inventory class stores the fullItemList that contains each Item object, and the playerItemList that contains the integer keys of the Items the player has acquired thus far.\
+The Events class stores the situationList that contains each Situation object, and each Situation has a prompt, the integer keys of the next Choices, and an optional integer key of the Item it grants (-1 if it gives no Item), and an optional String of the file name for its associated image.\
+The Decisions class stores the choiceList that contains each Choice object, and each Choice has its text, the integer key of the next Situation, and an optional integer key of its conditional Item (-1 if no required Item).
  
 ## Developing for Jal
 Jal's story flow is not hard-coded. You can create your own game with your own rules following the .slime format:
