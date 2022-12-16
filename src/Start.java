@@ -12,11 +12,19 @@ public class Start {
 	}
 
 	/**
+	 * @deprecated
 	 * This method checks to see if things are getting added to the master lists
-	 * and in the correct order. 
+	 * and in the correct order. This method no longer works since the master
+	 * lists are no longer public variables. The master lists can be changed
+	 * to public if you'd still like to use this method to see if you formatted
+	 * things correctly in the slimeball.
 	 */
-	public static void testModel() {
+	@Deprecated
+	public static void testModel( ) {
+
+		/*
 		System.out.println("Event\n");
+
 		for (Events.Situation std : Events.situationList) {
 			// these are how you invoke the different instance variables
 			// of a Situation
@@ -25,7 +33,9 @@ public class Start {
 			System.out.println(std.getItem());
 			System.out.println(std.getImage());
 		}
+
 		System.out.println("Decisions\n");
+
 		for (Decisions.Choice ch : Decisions.choiceList) {
 			// these are how you invoke the instance variables
 			// of a Choice
@@ -33,6 +43,7 @@ public class Start {
 			System.out.println(ch.getNextSituation());
 			System.out.println(ch.getClass());
 		}
+
 		System.out.println("Inventory\n");
 
 		for (Inventory.Item it : Inventory.fullItemList) {
@@ -43,6 +54,7 @@ public class Start {
 			System.out.println(it.getClass());
 
 		}
+
 		System.out.println(Decisions.getChoice(6).getNextSituation()); // will be false
 		System.out.println("test");
 		Inventory.addPlayerItem(0); // this is how you add an item. 0 corresponds to the phone
@@ -53,6 +65,7 @@ public class Start {
 			System.out.println(Inventory.getItem(it).getDescription());
 
 		}
+		*/
 
 	}
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Events {
 
-    public static ArrayList<Situation> situationList; // situation master list
+    private static ArrayList<Situation> situationList; // situation master list
 
     /**
      * Constructor that creates an empty Events master list
@@ -109,6 +109,11 @@ public class Events {
 
         new Events(masterList);
         reader.close();
+    }
+
+    public static ArrayList<Situation> getSituations( ) {
+
+        return situationList;
     }
 
     /**
@@ -241,9 +246,18 @@ public class Events {
          * 
          * @return next Choices integer keys
          */
-        public ArrayList<Integer> getChoices() {
+        public ArrayList<Integer> getChoices( ) {
 
             return this.choices;
+        }
+
+        /**
+         * @param n the n'th choice in this Situation's choices
+         * @return n'th Choice object
+         */
+        public Decisions.Choice getNthChoice(int n) {
+
+            return Decisions.getChoice(this.choices.get(n));
         }
 
         /**
@@ -295,9 +309,17 @@ public class Events {
         }
 
         /**
-         * @return the integer key of the Item in this Situation, referenced by the Inventory fullItemList
+         * @return the Item of this Situation, using its itemKey on fullItemList
          */
-        public int getItem() {
+        public Inventory.Item getItem() {
+
+            return Inventory.getItem(this.itemKey);
+        }
+
+        /**
+         * @return the integer key of the Item that this Situation grants the player
+         */
+        public int getItemKey() {
 
             return this.itemKey;
         }

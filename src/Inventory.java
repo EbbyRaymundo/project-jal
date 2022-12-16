@@ -7,8 +7,10 @@ public class Inventory {
     // We could use a linked list instead here if we were to be more readily
     // removing items but at the moment we are using an ArrayList. We currently
     // do not plan to remove items in our implementation
-    public static ArrayList<Item> fullItemList;
-    public static ArrayList<Integer> playerItemList;
+    private static ArrayList<Item> fullItemList;
+    // There was a conscious design decision to move the playerItemList here to keep all
+    // the Item operations within the Inventory class. 
+    private static ArrayList<Integer> playerItemList;
 
     /**
      * Default constructor to create an empty player Inventory

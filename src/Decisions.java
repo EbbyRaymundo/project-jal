@@ -13,7 +13,7 @@ import java.io.FileReader;
  */
 public class Decisions {
 
-    public static ArrayList<Choice> choiceList; // master list of Choice objects
+    private static ArrayList<Choice> choiceList; // master list of Choice objects
 
     /**
      * Constructor that creates an empty Decisions master list
@@ -110,13 +110,13 @@ public class Decisions {
             // choice text
             if (line.length == 3) {
                 // Reaches
-                Events.situationList.get(precedingKey).addChoice(i);
+                Events.getSituation(precedingKey).addChoice(i);
                 masterList.add(new Choice(text, followingKey));
             }
 
             else { // line.length must be 4 in this case, line[3] must be the required item
                 int itemKey = Integer.parseInt(line[3]);
-                Events.situationList.get(precedingKey).addChoice(i);
+                Events.getSituation(precedingKey).addChoice(i);
                 masterList.add(new Choice(text, followingKey, itemKey));
 
             }
@@ -190,14 +190,14 @@ public class Decisions {
         }
 
         /**
-         * integer key that references the next
-         * Situation within the situationList of Events
+         * Uses the integer key of the next Situation to return
+         * the corresponding Situation from Events.situationList
          * 
          * @return next Situation integer key
          */
-        public int getNextSituation() {
+        public Events.Situation getNextSituation() {
 
-            return this.nextSituationKey;
+            return Events.getSituation(this.nextSituationKey);
         }
 
         /**
