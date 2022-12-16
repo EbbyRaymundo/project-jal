@@ -7,8 +7,8 @@ Developed by Eberardo Raymundo and William Willis.
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
 ## Running Jal
-After pulling this repository, you can compile Jal using "javac *.java"  within src/ on the command line.\
-To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder. Jal comes preloaded with a few slimeballs, an example game "master.slime", and a fleshed out example "horror.slime". Do not specify slimeballs/YourFileHere.slime since the program is aware that it will be within the slimeballs/ folder
+- After pulling this repository, you can compile Jal using "javac *.java"  within src/ on the command line.\
+- To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder. Jal comes preloaded with a few slimeballs, an example game "master.slime", and a fleshed out example "horror.slime". Do not specify slimeballs/YourFileHere.slime since the program is aware that it will be within the slimeballs/ folder
 
 ## About Jal
 Jal is a text-based choose your own adventure game engine that integrates a GUI for increased interactivity. Jal is designed as a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA), and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern. The model is fully independent of the view (GUI.java) and the controller (Controller.java). Due to the nature of the implementation, it is possible for the player to select an option that self-loops to where they currently are, and the player can take a decision path that leads them back to the same place.
@@ -39,7 +39,9 @@ There are 3 master lists that store every Item, Situation, and Choice. Each Item
 | | | \[6\] Check your phone again |
 
 The Inventory class stores the fullItemList that contains each Item object, and the playerItemList that contains the integer keys of the Items the player has acquired thus far.\
+\
 The Events class stores the situationList that contains each Situation object, and each Situation has a prompt, the integer keys of the next Choices, and an optional integer key of the Item it grants (-1 if it gives no Item), and an optional String of the file name for its associated image.\
+\
 The Decisions class stores the choiceList that contains each Choice object, and each Choice has its text, the integer key of the next Situation, and an optional integer key of its conditional Item (-1 if no required Item).
  
 ## Developing for Jal
@@ -88,8 +90,10 @@ This is the corresponding story map for the master.slime example:
 ![example story](src/photos/jal.png "Story board of the master.slime file.")
 
 The most important constraint of Jal is that **you are limited to 4 choices per Situation**.\
-The second most important thing to remember is that **NUMBERING FOR ITEMS, SITUATIONS, AND CHOICES START AT 0**!\
-The third most important thing is that **a Situation can only grant 1 Item**.
+The second most important thing is that **NUMBERING FOR ITEMS, SITUATIONS, AND CHOICES START AT 0**!\
+The third most important thing is that **a Situation can only grant 1 Item**.\
+Something else that is pretty important is that **a Choice can only require up to 1 Item**.\
+\
 It is very important that when you are formatting your file, you **separate your components with a '~' within a line**. This is used as the separator for the regex finder to split up the line. That also means you shouldn't use any '~' within your text to not set everything on fire.\
 A design decision that was decided upon was that you should be able to acquire duplicates of the same Item. This is because it fit the original artistic vision of being able to loop back to the same point in time and re-encounter something. If you would like to change this, you can add a playerItemList.contains(itemKey) check within the Inventory.addPlayerItem() method to see if the player already has the Item beforehand.\
 You have the option to grant the player an item upon reaching a particular Situation, or require the player to possess a particular item to be able to select a choice. Additionally, you do not need to use items in your game at all. If you so choose, you may create a game flow that contains no item acquisition in your situations and no conditional choices. To do this, simply remove any item lines in the file, and remove the number of items at the top of the file. Do not set number of items to 0.
