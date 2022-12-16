@@ -1,5 +1,8 @@
 # Jal
 
+## Credits
+Developed by Eberardo Raymundo and William Willis.
+
 ## Preface
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
@@ -100,6 +103,3 @@ As a reminder:
 - Add dynamic button allocation to the GUI so that a Situation can have more than 4 Choices.
 - Use a GUI library that isn't Swing.
 - Add in a log so the player can see the choices they've been taking.
-
-## Credits
-Developed by Eberardo Raymundo and William Willis.
