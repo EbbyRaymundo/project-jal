@@ -7,11 +7,14 @@ Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to
 Jal is a text-based story adventure that integrates a GUI for increased interactivity and provides a finite amount of options for a user in each zone. The events are designed in a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA) schema, and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern. The model is fully independent of the view (GUI.java) and the controller (Controller.java)\
 
 ### Terminology
-|Term|Meaning|
+| Term | Meaning |
+| ---- | ------- |
 |Situation|The moment in the game that has a prompt to describe the scene and setting. Can have an associated key item to give the player that would unlock new paths|
 |Choice|The decision a player can make based on the given Situation|
 |Item|Given to the player upon reaching a specific Situation that can be used to unlock a Choice.|
 |Slimeball|The .slime file that specifies every Item, Situation, Choice, and how they relate to each other. See [##Developing for Jal](#developing-for-jal) for more.|
+
+
 
 ## Running Jal
 To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder.
