@@ -45,7 +45,7 @@ The Events class stores the situationList that contains each Situation object, a
 The Decisions class stores the choiceList that contains each Choice object, and each Choice has its text, the integer key of the next Situation, and an optional integer key of its conditional Item (-1 if no required Item).
  
 ## Developing for Jal
-Jal's story flow is not hard-coded. You can create your own game with your own rules following the .slime format:
+Jal's story flow is not hard-coded. You can create your own slimeball with your own rules following the .slime format:
 
 ```
 number of items~number of situations~number of choices
