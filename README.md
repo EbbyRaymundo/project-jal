@@ -100,7 +100,7 @@ As a reminder:
 
 ## Future features that can be added
 
-- In the future, we would like to add in an undo feature to place Situations in a stack, or some kind of save-state feature. Making it so certain key items could lock you out of an option would be a potential feature that one might want to add, but is not advised since it detracts from the player enjoyment of being able to interact with the entirety of your story.\
+- In the future, we would like to add in an undo feature to place Situations in a stack, or some kind of save-state feature. Making it so certain key items could lock you out of an option would be a potential feature that one might want to add, but is not advised since it detracts from the player enjoyment of being able to interact with the entirety of your story.
 - Add in multi-Item requirements to a Choice.
 - Make the player inventory a pop out that shows each item with its own little icon, name, and shows a description when you hover over it.
 - Add a .slime developer tool to automatically generate your .slime file based on how you mapped your story.
