@@ -130,7 +130,7 @@ public class Decisions {
      * @param choiceKey integer key within the master list choiceList
      * @return Choice object with integer key choiceKey
      */
-    public static Choice getChoiceFromFullList(int choiceKey) {
+    public static Choice getChoice(int choiceKey) {
 
         return choiceList.get(choiceKey);
     }

@@ -94,7 +94,7 @@ public class Inventory {
      * @param itemKey integer key within the master list fullItemList
      * @return Item object with integer key itemKey
      */
-    public static Item getItemFromFullList(int itemKey) {
+    public static Item getItem(int itemKey) {
 
         return fullItemList.get(itemKey);
     }

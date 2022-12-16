@@ -11,10 +11,10 @@ public class Start {
 
 	}
 
-	public static void testController() {
-
-	}
-
+	/**
+	 * This method checks to see if things are getting added to the master lists
+	 * and in the correct order. 
+	 */
 	public static void testModel() {
 		System.out.println("Event\n");
 		for (Events.Situation std : Events.situationList) {
@@ -43,14 +43,14 @@ public class Start {
 			System.out.println(it.getClass());
 
 		}
-		System.out.println(Decisions.getChoiceFromFullList(6).getNextSituation()); // will be false
+		System.out.println(Decisions.getChoice(6).getNextSituation()); // will be false
 		System.out.println("test");
 		Inventory.addPlayerItem(0); // this is how you add an item. 0 corresponds to the phone
-		System.out.println(Decisions.getChoiceFromFullList(5).isAvailable()); // will be true
+		System.out.println(Decisions.getChoice(5).isAvailable()); // will be true
 
 		for (Integer it : Inventory.getPlayerItems()) {
 			// this is how you access an Item's data from checking what the player has
-			System.out.println(Inventory.getItemFromFullList(it).getDescription());
+			System.out.println(Inventory.getItem(it).getDescription());
 
 		}
 
@@ -58,7 +58,7 @@ public class Start {
 
 	public static void main(String[] args) {
 
-		String slimeFile = args[0];
+		String slimeFile = args[0]; // arg [0] is the name of the slimeball
 
 		try {
 			Inventory.readSlimeFile(slimeFile);

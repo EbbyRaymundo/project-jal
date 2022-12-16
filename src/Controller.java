@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class Controller {
 
     // for(Integer it : Inventory.playerItemlist)
-    // System.out.println(Inventory.getItemFromFullList(it).getDescription());
+    // System.out.println(Inventory.getItem(it).getDescription());
     // //Gets the item discription from the
 
     public static Events.Situation currentSituation;
@@ -15,7 +15,7 @@ public class Controller {
     public static Decisions.Choice choice3;
 
     public static void start() {
-        currentSituation = Events.getSituationFromFullList(0);
+        currentSituation = Events.getSituation(0);
         String input = JOptionPane.showInputDialog("Please enter your name:");
         if (!input.equals("")) {
             GUI.characterName.setText(input);
@@ -23,8 +23,8 @@ public class Controller {
 
         }
         GUI.start.setEnabled(false);
-        GUI.prompt.setText(Events.getSituationFromFullList(0).getPrompt());
-        choiceSet(Events.getSituationFromFullList(0));
+        GUI.prompt.setText(Events.getSituation(0).getPrompt());
+        choiceSet(Events.getSituation(0));
 
     }
 
@@ -53,7 +53,7 @@ public class Controller {
     }
 
     public static void controlFunction(Decisions.Choice choice) {
-        currentSituation = Events.getSituationFromFullList(choice.getNextSituation());
+        currentSituation = Events.getSituation(choice.getNextSituation());
         setImage(currentSituation.getImage());
         if (currentSituation.hasItem()) {
 
@@ -61,12 +61,12 @@ public class Controller {
             // This next very large part sets the Inventory to include the newly aquired
             // item
             if (GUI.invArea.getText().equals("")) {
-                GUI.invArea.setText(Inventory.getItemFromFullList(currentSituation.getItem()).getName() + " "
-                        + Inventory.getItemFromFullList(currentSituation.getItem()).getDescription());
+                GUI.invArea.setText(Inventory.getItem(currentSituation.getItem()).getName() + " "
+                        + Inventory.getItem(currentSituation.getItem()).getDescription());
             } else {
                 GUI.invArea.setText(GUI.invArea.getText() + "\n\n"
-                        + Inventory.getItemFromFullList(currentSituation.getItem()).getName() + " "
-                        + Inventory.getItemFromFullList(currentSituation.getItem()).getDescription());
+                        + Inventory.getItem(currentSituation.getItem()).getName() + " "
+                        + Inventory.getItem(currentSituation.getItem()).getDescription());
             }
 
         }
@@ -85,10 +85,10 @@ public class Controller {
 
         for (int i = 0; i < 4; i++) {
             //
-            if (i < sit.getChoices().size() && Decisions.choiceList.get(sit.getChoices().get(i)).isAvailable()) {
+            if (i < sit.getChoices().size() && Decisions.getChoice(sit.getChoices().get(i)).isAvailable()) {
 
-                set(i, Decisions.choiceList.get(sit.getChoices().get(i)).getText(),
-                        Decisions.choiceList.get(sit.getChoices().get(i)));
+                set(i, Decisions.getChoice(sit.getChoices().get(i)).getText(),
+                        Decisions.getChoice(sit.getChoices().get(i)));
             } else {
                 // we don't want to try accessing out of bounds in the getChoices()
                 // ArrayList so we hand it an empty String instead

@@ -117,7 +117,7 @@ public class Events {
      * @param situationKey
      * @return Item at integer key 
      */
-    public static Situation getSituationFromFullList(int situationKey) {
+    public static Situation getSituation(int situationKey) {
 
         return situationList.get(situationKey);
     }
