@@ -4,7 +4,14 @@
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
 ## About Jal
-Jal is a text-based story adventure that integrates a GUI for increased interactivity and provides a finite amount of options for a user in each zone. The events are designed in a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA) schema, and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern.
+Jal is a text-based story adventure that integrates a GUI for increased interactivity and provides a finite amount of options for a user in each zone. The events are designed in a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA) schema, and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern. The model is fully independent of the view (GUI.java) and the controller (Controller.java)\
+
+### Terminology
+|Term|Meaning|
+|Situation|The moment in the game that has a prompt to describe the scene and setting. Can have an associated key item to give the player that would unlock new paths|
+|Choice|The decision a player can make based on the given Situation|
+|Item|Given to the player upon reaching a specific Situation that can be used to unlock a Choice.|
+|Slimeball|The .slime file that specifies every Item, Situation, Choice, and how they relate to each other. See [##Developing for Jal](#developing-for-jal) for more.|
 
 ## Running Jal
 To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder.
@@ -54,7 +61,7 @@ This is the corresponding story map for the master.slime example:
 
 ![example story](src/photos/jal.png "Story board of the master.slime file.")
 
-The most important constraint of Jal is that **you are limited to 4 choices per situation**.\
+The most important constraint of Jal is that **you are limited to 4 choices per Situation**.\
 The second most important thing to remember is that **NUMBERING FOR ITEMS, SITUATIONS, AND CHOICES START AT 0**!\
 It is very important that when you are formatting your file, you **separate your components with a '~' within a line**. This is used as the separator for the regex finder to split up the line. That also means you shouldn't use any '~' within your text to not set everything on fire.\
 A design decision that was decided upon was that you should be able to acquire duplicates of the same Item. This is because it fit the original artistic vision of being able to loop back to the same point in time and re-encounter something. If you would like to change this, you can add a playerItemList.contains(itemKey) check within the Inventory.addPlayerItem() method to see if the player already has the Item beforehand.\
