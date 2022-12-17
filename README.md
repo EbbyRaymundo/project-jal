@@ -111,3 +111,4 @@ As a reminder:
 - Add dynamic button allocation to the GUI so that a Situation can have more than 4 Choices.
 - Use a GUI library that isn't Swing.
 - Add in a log so the player can see the choices they've been taking.
+- Add a dev mode.
