@@ -7,8 +7,11 @@ Developed by Eberardo Raymundo and William Willis.
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
 ## Running Jal
-- After pulling this repository, you can compile Jal using "javac *.java"  within src/ on the command line.
-- To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder. Jal comes preloaded with a few slimeballs, an example game "master.slime", and a fleshed out example "horror.slime". Do not specify slimeballs/YourFileHere.slime since the program is aware that it will be within the slimeballs/ folder
+Download the latest release of Jal. On the command line run "java -jar Jal.jar horror.slime" (if you wanted to play the horror slimeball). Specify the path to your slimeball if it isn't in the same location as your Jal.jar file.
+
+## Compiling Jal from source
+- After cloning this repository, you can compile Jal using "javac *.java"  within src/ on the command line.
+- To start the game, run the Start file using "java Start slimeballs/YourFileHere.slime" on the command line within the src/ folder. Jal comes preloaded with a few slimeballs, an example game "master.slime", and a fleshed out example "horror.slime".
 
 ## About Jal
 Jal is a text-based choose your own adventure game engine that integrates a GUI for increased interactivity. Jal is designed as a [deterministic finite automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton) (DFA), and the game engine was developed in a [model-view-controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (MVC) pattern. The model is fully independent of the view (GUI.java) and the controller (Controller.java). Due to the nature of the implementation, it is possible for the player to select an option that self-loops to where they currently are, and the player can take a decision path that leads them back to the same place.
