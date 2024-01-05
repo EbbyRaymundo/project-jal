@@ -7,7 +7,7 @@ Developed by Eberardo Raymundo and William Willis.
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
 ## Running Jal
-- After pulling this repository, you can compile Jal using "javac *.java"  within src/ on the command line.\
+- After pulling this repository, you can compile Jal using "javac *.java"  within src/ on the command line.
 - To start the game, run the Start file using "java Start YourFileHere.slime" on the command line within the src/ folder. Jal comes preloaded with a few slimeballs, an example game "master.slime", and a fleshed out example "horror.slime". Do not specify slimeballs/YourFileHere.slime since the program is aware that it will be within the slimeballs/ folder
 
 ## About Jal
