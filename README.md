@@ -7,8 +7,9 @@ Developed by Eberardo Raymundo and William Willis.
 Jal is a UNCC BINF 6380 Advanced Programming project that challenges students to make a sufficiently complex programming project by the end of the semester. 
 
 ## Running Jal
-1. Download the latest release of Jal.
-2. On the command line, run "java -jar Jal.jar horror.slime" (if you wanted to play the horror slimeball). Specify the path to your slimeball if it isn't in the same location as your Jal.jar file.
+1. Download the latest release of Jal.jar.
+2. Download a .slime file to run with Jal.jar (we'd recommend horror.slime).
+3. On the command line, run "java -jar Jal.jar horror.slime" (if you wanted to play the horror slimeball). Specify the path to your slimeball if it isn't in the same location as your Jal.jar file.
 
 ## Compiling Jal from source
 1. After cloning this repository, you can compile Jal using "javac *.java"  within src/ on the command line.
